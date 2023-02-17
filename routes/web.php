@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\woningdetailController;
+use App\Http\Controllers\xmlController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +19,15 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('getXML', [xmlController::class, 'index'])->name('getxml-index');
+
+Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])->name('woningdetails-finddetails');
+
+Route::get('/home', [HomepageController::class, 'index'])->name('homepage.index');
+Route::post('/home', [HomepageController::class, 'searchDetails'])->name('homepage.searchdetails');
+
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('LayoutHome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
