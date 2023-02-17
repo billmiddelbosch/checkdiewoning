@@ -6,7 +6,7 @@
       <div id="verkopen" class="wrapper">
         <div class="text-center wrapper">
           <h2>Weten wat een woning kost?</h2>
-          <h3 class="text-tertiary">Jouw huis - onze kennis - verkocht!</h3>
+            <h3 class="text-tertiary">Jouw huis - onze kennis - verkocht!!</h3>
         </div>
         <div class="text-center">
 
