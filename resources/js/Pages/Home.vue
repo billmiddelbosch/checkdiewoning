@@ -2,11 +2,13 @@
 <template>
   <div class="main" style="position: absolute">
 
+    <!-- <Header :background="true" /> -->
+
     <div class="flex-column flex-grid--full">
       <div id="verkopen" class="wrapper">
         <div class="text-center wrapper">
           <h2>Weten wat een woning kost?</h2>
-            <h3 class="text-tertiary">Jouw huis - onze kennis - verkocht!!</h3>
+          <h3 class="text-tertiary">Jouw huis - onze kennis - verkocht!!</h3>
         </div>
         <div class="text-center">
 
@@ -35,12 +37,15 @@
 <script>
 
 export default {
-  name: "Homepage",
+  name: "Home",
   components: {
   },
   props: {
   }
 };
+
+// import Header from "@/../components/ComponentHeader";
+
 </script>
 <style scoped>
 h2 {

@@ -27,7 +27,7 @@ Route::get('/home', [HomepageController::class, 'index'])->name('homepage.index'
 Route::post('/home', [HomepageController::class, 'searchDetails'])->name('homepage.searchdetails');
 
 Route::get('/', function () {
-    return Inertia::render('LayoutHome', [
+    return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
