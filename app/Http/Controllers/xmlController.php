@@ -23,8 +23,8 @@ class xmlController extends Controller
             $phpArray = json_decode($json, true);
 
             $woningen = $phpArray['url'];
-            // for ($a = 0; $a < count($woningen); $a++) {
-            for ($a = 0; $a < 10; $a++) {
+            for ($a = 0; $a < count($woningen); $a++) {
+            // for ($a = 0; $a < 10; $a++) {
                 $datum = substr($woningen[$a]['lastmod'], 0, 10);
 
                 if ($datum == substr(now()->toDateTimeString(), 0, 10)) {

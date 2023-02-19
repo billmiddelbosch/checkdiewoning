@@ -1,9 +1,6 @@
 
 <template>
   <div class="main" style="position: absolute">
-
-    <!-- <Header :background="true" /> -->
-
     <div class="flex-column flex-grid--full">
       <div id="verkopen" class="wrapper">
         <div class="text-center wrapper">
@@ -43,8 +40,6 @@ export default {
   props: {
   }
 };
-
-// import Header from "@/../components/ComponentHeader";
 
 </script>
 <style scoped>
