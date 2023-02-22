@@ -38,12 +38,12 @@ function submit() {
               <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                   <div class="column bg-white overflow-hidden shadow-sm sm:rounded-lg">
                       <div class="row main">
-                        <div v-for="(woning, i) in this.woningen" :key="i">
+                        <div v-for="(woning, i) in $page.woningen" :key="i">
     
-                          {{ this.woningen[i].straat }}
-                          {{ this.woningen[i].plaats }}
-                          {{ this.woningen[i].postcode }}
-                          {{ this.woningen[i].status }}
+                          {{ $page.woningen[i].straat }}
+                          {{ $page.woningen[i].plaats }}
+                          {{ $page.woningen[i].postcode }}
+                          {{ $page.woningen[i].status }}
 
                         </div>
                         <div class="card">
