@@ -31,7 +31,7 @@
               >mailen</a>
             </ul>
             <ul>
-              <img class="col-2" src="@/../assets/Jumba logo-klein.png">             
+              <img class="col-2" src="https://jumba-assets.s3.eu-west-1.amazonaws.com/Jumba-icon-klein.png">             
             </ul>
           </div>
           <div class="line"></div>
