@@ -4,6 +4,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\woningdetailController;
 use App\Http\Controllers\xmlController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\zoekAanbodController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,12 +20,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('getXML', [xmlController::class, 'index'])->name('getxml-index');
 
-Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])->name('woningdetails-finddetails');
-
-Route::get('/home', [HomepageController::class, 'index'])->name('homepage.index');
-Route::post('/home', [HomepageController::class, 'searchDetails'])->name('homepage.searchdetails');
+// OPEN OMGEVING
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -33,7 +30,16 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
+
+
+// ADVISEUR GESLOTEN OMGEVING
+
+Route::get('/adviseur', [zoekAanbodController::class, 'index'])->middleware(['auth', 'verified'])->name('zoekAanbod-index');
+Route::post('/adviseur', [zoekAanbodController::class, 'aanbodOnDate'])->name('zoekAanbod-aanbodOnDate');
+
+
+// BOILER GESLOTEN OMGEVING
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -45,8 +51,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/vuePage', function () {
-    return Inertia::render('vuePage');
-})->middleware(['auth', 'verified'])->name('dashboard');;
+
+// OVERIG
+
+Route::get('getXML', [xmlController::class, 'index'])->name('getxml-index');
+
+Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])->name('woningdetails-finddetails');
+
+Route::get('/home', [HomepageController::class, 'index'])->name('homepage.index');
+Route::post('/home', [HomepageController::class, 'searchDetails'])->name('homepage.searchdetails');
+
+
 
 require __DIR__ . '/auth.php';
