@@ -33,26 +33,6 @@ import { Head } from '@inertiajs/vue3';
                               <a class="btn btn-orange" href="adviseur">Login</a>
                             </div>
                           </div>
-
-                          <!-- <div class="wrapper bg--grey">
-                            <div class="col">
-                              <h3>wijkopenautos.nl de simpelste manier om je auto te verkopen</h3>
-                            </div>
-                            <div class="col">
-                              <h3>wijkopenautos.nl de simpelste manier om je auto te verkopen</h3>
-                            </div>
-
-                          </div> -->
-
-                          <!-- <div id="kopen" class="wrapper">
-                            <div class="text-center wrapper">
-                              <h2 class="text-center">Je huis met iSalu kopen</h2>
-                              <h3 class="text-tertiary">Jouw droomhuis - onze kennis - gekocht!</h3>
-                            </div>
-                            <div class="text-center">
-                            </div>
-                          </div> -->
-
                         </div>
 
                       </div>

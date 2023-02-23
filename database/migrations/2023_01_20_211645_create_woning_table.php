@@ -23,7 +23,8 @@ return new class extends Migration
             $table->date('datum');
             $table->boolean('status');
             $table->string('jumbaId');
-            $table->timestamps();
+            $table->timestamps('created_at');
+            $table->timestamps('updated_at');
         });
     }
 

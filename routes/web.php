@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 // ADMIN OMGEVING
 
 Route::get('admin', [adminController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-index');
-Route::get('xmldaily', [xmlController::class, 'dailyRun'])->middleware(['auth', 'verified'])->name('xml-dailyRun');
+Route::get('admin/xmldaily', [xmlController::class, 'dailyRun'])->middleware(['auth', 'verified'])->name('xml-dailyRun');
 
 
 // OVERIG

@@ -32,17 +32,6 @@ defineProps({
                                 <Link :href="route('xml-dailyRun')" class="btn btn-blue">Nieuw aanbod inladen</Link>
                             </div>
                         </div> 
-                        <div class="flex flex-row p-10">
-                            <div v-for="(woning, i) in woningen" :key="i">
-    
-                                {{ woningen[i].straat }}
-                                {{ woningen[i].plaats }}
-                                {{ woningen[i].postcode }}
-                                {{ woningen[i].status }}
-
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>
