@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call('App\Http\Controllers\xmlController@dailyRun')
-        ->hourly()
+        ->everyThirtyMinutes()
         ->emailOutputTo('bill@jumba.nl');
     }
 
