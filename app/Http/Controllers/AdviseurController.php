@@ -11,11 +11,11 @@ use App\Http\Controllers\Arr;
 use App\Http\Controllers\whereDate;
 
 
-class zoekAanbodController extends Controller
+class AdviseurController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Adviseur/zoekAanbod');   
+        return Inertia::render('Adviseur/adviseurHome');   
     }
 
 
@@ -23,12 +23,12 @@ class zoekAanbodController extends Controller
     {
         $zoek = $request->postcode . '%';
 
-        return Inertia::render('Adviseur/zoekAanbod', [
+        return Inertia::render('Adviseur/adviseurHome', [
             'woningen' => woning::where([
                 ['postcode', 'like', $zoek],
-                ['status', '1']])
-                // ->whereDate(
-                // 'datum', '<=' , $request->datum)
+                ['status', '1'],
+                ['datum', '>=', $request->datum]
+                ])
                 ->get()
         ]);
 

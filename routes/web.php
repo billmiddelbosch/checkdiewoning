@@ -3,8 +3,9 @@
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\woningdetailController;
 use App\Http\Controllers\xmlController;
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\zoekAanbodController;
+use App\Http\Controllers\AdviseurController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,8 +36,8 @@ Route::get('/', function () {
 
 // ADVISEUR GESLOTEN OMGEVING
 
-Route::get('/adviseur', [zoekAanbodController::class, 'index'])->middleware(['auth', 'verified'])->name('zoekAanbod-index');
-Route::post('/adviseur', [zoekAanbodController::class, 'aanbodOnDate'])->name('zoekAanbod-aanbodOnDate');
+Route::get('/adviseur', [AdviseurController::class, 'index'])->middleware(['auth', 'verified'])->name('adviseur-index');
+Route::post('/adviseur', [AdviseurController::class, 'aanbodOnDate'])->name('adviseur-aanbodOnDate');
 
 
 // BOILER GESLOTEN OMGEVING
@@ -52,9 +53,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
+// ADMIN OMGEVING
+
+Route::get('admin', [adminController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-index');
+Route::get('xmldaily', [xmlController::class, 'dailyRun'])->middleware(['auth', 'verified'])->name('xml-dailyRun');
+
+
 // OVERIG
 
-Route::get('getXML', [xmlController::class, 'index'])->name('getxml-index');
 
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])->name('woningdetails-finddetails');
 

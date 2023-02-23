@@ -1,5 +1,4 @@
 
-
 <script setup>
 import defaultLayout from '@/Layouts/defaultLayout.vue';
 import Navigation from '@/Components/ComponentNavigation.vue';
@@ -8,6 +7,10 @@ import { Head } from '@inertiajs/vue3';
 
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
+
+defineProps({
+  woningen: Array
+});
 
 const form = reactive({
   postcode: null,
@@ -18,13 +21,11 @@ function submit() {
   router.post('/adviseur', form)
 }
 
-
-
 </script>
 
 
 <template>
-    <Head title="Advisuer zoek" />
+    <Head title="Adviseur home" />
 
     <defaultLayout>
 
@@ -37,21 +38,29 @@ function submit() {
               <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                   <div class="column bg-white overflow-hidden shadow-sm sm:rounded-lg">
                       <div class="row main">
+                        <div v-for="(woning, i) in woningen" :key="i">
+    
+                          {{ woningen[i].straat }}
+                          {{ woningen[i].plaats }}
+                          {{ woningen[i].postcode }}
+                          {{ woningen[i].status }}
+
+                        </div>
                         <div class="card">
                             <div class="card-header">
                                 Zoek woning
                             </div>
                             <div class="card-body">
+                              
                                 <form @submit.prevent="submit">
                                 
                                     <div class="form-floating">
                                         <span class="input-group-text" id="addon-wrapping">Postcode</span>
-                                        <input type="text" class="form-control" id="postcode" name="postcode">
+                                        <input type="text" class="form-control" id="postcode" name="postcode" v-model="form.postcode">
                                         <span class="input-group-text" id="addon-wrapping">Datum</span>
-                                        <input type="text" class="form-control" id="datum" name="datum">
+                                        <input type="text" class="form-control" id="datum" name="datum" v-model="form.datum">
                                         <button class="btn-orange" type="submit">Search</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
