@@ -23,30 +23,32 @@ class AdviseurController extends Controller
     {
         $zoek = $request->postcode . '%';
 
-        $woningenDB = woning::where([
-            ['postcode', 'like', $zoek],
-            ['status', '1'],
-            ['datum', '<=', $request->datum]
-            ])
-            ->get();
+        // Refresh data
+        // $woningenDB = woning::where([
+        //     ['postcode', 'like', $zoek],
+        //     ['status', '1'],
+        //     ['datum', '<=', $request->datum]
+        //     ])
+        //     ->get();
         
-        for ($a = 0; $a < count($woningenDB); $a++) {
+        // for ($a = 0; $a < count($woningenDB); $a++) {
 
-            // Verse Jumba data ophalen
-            $adresquery = $woningenDB[$a]->straat . " " . $woningenDB[$a]->nr . $woningenDB[$a]->addition;
+        //     // Verse Jumba data ophalen
+        //     $adresquery = $woningenDB[$a]->straat . " " . $woningenDB[$a]->nr . $woningenDB[$a]->addition;
 
-            $woningdetails = app('App\Http\Controllers\xmlController')->getPostcode($adresquery);
+        //     $woningdetails = app('App\Http\Controllers\xmlController')->getPostcode($adresquery);
 
-            // Update status in DB obv verse Jumba data
-            $status = $woningdetails[0]['Parameters']['Forsale'];
-            woning::where('jumbaId', $woningdetails[0]['Payload']['ID'])->update(
-                [
-                    'status' => $status,
-                    'updated_at' => now()
-                ]
-            );
-        }
+        //     // Update status in DB obv verse Jumba data
+        //     $status = $woningdetails[0]['Parameters']['Forsale'];
+        //     woning::where('jumbaId', $woningdetails[0]['Payload']['ID'])->update(
+        //         [
+        //             'status' => $status,
+        //             'updated_at' => now()
+        //         ]
+        //     );
+        // }
         
+        // Return requested data
         return Inertia::render('Adviseur/adviseurHome', [
             'woningen' => woning::where([
             ['postcode', 'like', $zoek],

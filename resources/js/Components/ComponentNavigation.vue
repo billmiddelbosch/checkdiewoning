@@ -124,8 +124,11 @@ defineProps({
 
                   <!-- Navigation Links -->
                   <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                      <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                          Dashboard
+                    <NavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+                          Adviseur
+                      </NavLink>
+                      <NavLink :href="route('admin-index')" :active="route().current('admin-index')">
+                          Admin
                       </NavLink>
                   </div>
               </div>
@@ -207,9 +210,12 @@ defineProps({
           class="sm:hidden"
       >
           <div class="pt-2 pb-3 space-y-1">
-              <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                  Dashboard
-              </ResponsiveNavLink>
+            <ResponsiveNavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+                Adviseur
+            </ResponsiveNavLink>
+            <ResponsiveNavLink :href="route('admin-index')" :active="route().current('admin-index')">
+                Admin
+            </ResponsiveNavLink>
           </div>
 
           <!-- Responsive Settings Options -->

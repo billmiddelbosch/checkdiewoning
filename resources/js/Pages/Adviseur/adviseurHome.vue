@@ -37,32 +37,49 @@ function submit() {
           <div class="py-12" >
               <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                   <div class="column bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                      <div class="row main">
-                        <div v-for="(woning, i) in woningen" :key="i">
-    
-                          {{ woningen[i].straat }}
-                          {{ woningen[i].plaats }}
-                          {{ woningen[i].postcode }}
-                          {{ woningen[i].status }}
+                      <div class="grid grid-cols-3 gap-20 m-10">
+
+                        <div class="basis-1/4">
+                            <h3>Zoek woning aanbod</h3>
+                              
+                              <form @submit.prevent="submit" class="grid grid-rows-3 gap-4 justify-items-center">
+                              
+                                  <div class="grid grid-cols-3 gap-10">
+                                      <span class="form-label" id="addon-wrapping">Postcode</span>
+                                      <input type="text" class="form-input col-span-2" id="postcode" name="postcode" v-model="form.postcode">
+                                  </div>
+                                  <div class="grid grid-cols-3 gap-10">
+                                      <span class="form-label" id="addon-wrapping">Datum</span>
+                                      <input type="text" class="form-input col-span-2" id="datum" name="datum" v-model="form.datum">
+                                  </div>
+                                  <div class="grid grid-cols-3 gap-10">
+                                      <button class="btn-orange col-span-3" type="submit">Search</button>
+                                  </div>
+                              </form>
 
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                Zoek woning
-                            </div>
-                            <div class="card-body">
-                              
-                                <form @submit.prevent="submit">
-                                
-                                    <div class="form-floating">
-                                        <span class="input-group-text" id="addon-wrapping">Postcode</span>
-                                        <input type="text" class="form-control" id="postcode" name="postcode" v-model="form.postcode">
-                                        <span class="input-group-text" id="addon-wrapping">Datum</span>
-                                        <input type="text" class="form-control" id="datum" name="datum" v-model="form.datum">
-                                        <button class="btn-orange" type="submit">Search</button>
-                                    </div>
-                                </form>
-                            </div>
+
+                        <div class="col-span-2">
+
+                          <h3> Woningen te koop</h3>
+                          <table class="border-separate border-spacing-2 border border-slate-500 ">
+                            <thead>
+                              <tr>
+                                <th class="border border-slate-600">Straat</th>
+                                <th class="border border-slate-600">Plaats</th>
+                                <th class="border border-slate-600">Postcode</th>
+                                <th class="border border-slate-600">Te koop?</th>
+                              </tr>
+                            </thead>
+                            <tbody v-for="(woning, i) in woningen" :key="i">
+                                <tr class="m-10">                              
+                                  <td class="">{{ woningen[i].straat }}</td>
+                                  <td class="">{{ woningen[i].plaats }}</td>
+                                  <td class="">{{ woningen[i].postcode }}</td>
+                                  <td class="">{{ woningen[i].status }}</td>
+                                </tr>
+                            </tbody>
+                          </table>
                         </div>
                       </div>
                   </div>
