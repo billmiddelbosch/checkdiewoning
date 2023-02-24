@@ -14,11 +14,11 @@ class Kernel extends ConsoleKernel
     {
         // Ophalen nieuw Aanbod
         $schedule->call('App\Http\Controllers\xmlController@dailyRun')
-        ->hourlyAt(15);
+        ->hourly();
 
         // Verwijderen verwijderd Aanbod
-        $schedule->call('App\Http\Controllers\xmlController@houseKeeping')
-        ->dailyAt('01:00');
+        // $schedule->call('App\Http\Controllers\xmlController@houseKeeping')
+        // ->dailyAt('01:00');
     }
 
     /**
