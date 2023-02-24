@@ -23,13 +23,24 @@ defineProps({
                     <div class="basis-0 ">
                         <div class="flex flex-row p-10 ">
                             <div class="basis-1/2" >
-                                <h1 class="mx-10">Welkom</h1>
-                                <p class="pr-10">Welkom op de Admin pagina. Gebruik de knop hier naast om het gewijzigde aanbod van
+                                <h1 class="mx-10">Laden nieuw aanbod</h1>
+                                <p class="pr-10">Gebruik de knop hier naast om het gewijzigde aanbod van
                                     vandaag te laden in de database.
                                 </p>
                             </div>
                             <div class="basis-1/2 " >
-                                <Link :href="route('xml-dailyRun')" class="btn btn-blue">Nieuw aanbod inladen</Link>
+                                <Link :href="route('xml-dailyRun')" class="btn btn-blue">Nieuw aanbod</Link>
+                            </div>
+                        </div> 
+                        <div class="flex flex-row p-10 ">
+                            <div class="basis-1/2" >
+                                <h1 class="mx-10">Housekeeping</h1>
+                                <p class="pr-10">Gebruik de knop hier naast om oud aanbod van 2 maanden geleden te refreshen 
+                                    in de database.
+                                </p>
+                            </div>
+                            <div class="basis-1/2 " >
+                                <Link :href="route('xml-Housekeeping')" class="btn btn-blue">Housekeeping</Link>
                             </div>
                         </div> 
                     </div>

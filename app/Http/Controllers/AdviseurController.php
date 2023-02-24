@@ -26,7 +26,7 @@ class AdviseurController extends Controller
         $woningenDB = woning::where([
             ['postcode', 'like', $zoek],
             ['status', '1'],
-            ['datum', '>=', $request->datum]
+            ['datum', '<=', $request->datum]
             ])
             ->get();
         
@@ -42,7 +42,6 @@ class AdviseurController extends Controller
             woning::where('jumbaId', $woningdetails[0]['Payload']['ID'])->update(
                 [
                     'status' => $status,
-                    'datum' => now(),
                     'updated_at' => now()
                 ]
             );
@@ -52,7 +51,7 @@ class AdviseurController extends Controller
             'woningen' => woning::where([
             ['postcode', 'like', $zoek],
             ['status', '1'],
-            ['datum', '>=', $request->datum]
+            ['datum', '<=', $request->datum]
             ])
             ->get()
             ]);

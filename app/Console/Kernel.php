@@ -12,10 +12,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Ophalen nieuw Aanbod
         $schedule->call('App\Http\Controllers\xmlController@dailyRun')
-        ->everyThirtyMinutes()
-        ->emailOutputTo('bill@jumba.nl');
+        ->hourlyAt(15);
+
+        // Verwijderen verwijderd Aanbod
+        $schedule->call('App\Http\Controllers\xmlController@houseKeeping')
+        ->dailyAt('01:00');
     }
 
     /**
