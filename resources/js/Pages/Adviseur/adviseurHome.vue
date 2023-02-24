@@ -9,7 +9,14 @@ import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 
 defineProps({
-  woningen: Array
+  woningen: {
+      type: Array,
+      default: []
+  	},
+  results: {
+      type: Boolean,
+      default: false
+  	}
 });
 
 const form = reactive({
@@ -59,24 +66,26 @@ function submit() {
 
                         </div>
 
-                        <div class="col-span-2">
+                        <div v-if="results" class="col-span-2">
 
                           <h3> Woningen te koop</h3>
-                          <table class="border-separate border-spacing-2 border border-slate-500 ">
-                            <thead>
-                              <tr>
-                                <th class="border border-slate-600">Straat</th>
-                                <th class="border border-slate-600">Plaats</th>
-                                <th class="border border-slate-600">Postcode</th>
-                                <th class="border border-slate-600">Te koop?</th>
+                          <table class="border-separate border-spacing-4">
+                            <thead class="text-left">
+                              <tr class="">
+                                <th class="">Plaats</th>
+                                <th class="">Straat</th>
+                                <th class="">Postcode</th>
+                                <th class="text-center">Details</th>
                               </tr>
                             </thead>
                             <tbody v-for="(woning, i) in woningen" :key="i">
-                                <tr class="m-10">                              
-                                  <td class="">{{ woningen[i].straat }}</td>
+                                <tr class="text-left">                              
                                   <td class="">{{ woningen[i].plaats }}</td>
+                                  <td class="">{{ woningen[i].straat }}</td>
                                   <td class="">{{ woningen[i].postcode }}</td>
-                                  <td class="">{{ woningen[i].status }}</td>
+                                  <td class="text-center">
+                                    <a class="btn-blue" :href="'https://www.jumba.nl/'+woningen[i].plaats+'/'+woningen[i].straat+'/'+woningen[i].nr+woningen[i].addition">Jumba page</a>
+                                  </td>
                                 </tr>
                             </tbody>
                           </table>

@@ -55,7 +55,8 @@ class AdviseurController extends Controller
             ['status', '1'],
             ['datum', '<=', $request->datum]
             ])
-            ->get()
+            ->get(),
+            'results' => true
             ]);
     }
 
