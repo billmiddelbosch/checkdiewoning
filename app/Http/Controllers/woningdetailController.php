@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Inertia\Inertia;
 
 class woningdetailController extends Controller
 {
@@ -16,11 +17,13 @@ class woningdetailController extends Controller
         // query woningdetails at Jumba API
         $jumbaDetails = $this->getJumbadata($adresquery);
 
-        $altumDetails = $this->getAltumdata(strtoupper($jumbaDetails['Filter']['Postcode']), $jumbaDetails['Filter']['Number']);
+        // $altumDetails = $this->getAltumdata(strtoupper($jumbaDetails['Filter']['Postcode']), $jumbaDetails['Filter']['Number']);
 
         // open Detail page
 
-        return view('detailPage', compact('jumbaDetails', 'altumDetails'));
+        return Inertia::render('Particulier/detailPage', [
+            'jumbaData' => $jumbaDetails
+        ]);
     }
 
 

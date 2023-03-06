@@ -33,6 +33,9 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
+    ->name('woningdetails-finddetails');
+
 
 // ADVISEUR GESLOTEN OMGEVING
 
