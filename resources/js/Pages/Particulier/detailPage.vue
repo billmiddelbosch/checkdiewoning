@@ -9,6 +9,7 @@ import SubMenu from '@/Components/SubMenu.vue';
 import PropertyDetails from '@/Components/PropertyDetails.vue';
 import { Head } from '@inertiajs/vue3';
 
+
 defineProps({
     jumbaData: Object,
     items: Array
@@ -28,15 +29,13 @@ defineProps({
 
         <template #main>
 
-            <Breadcrum :jumbaData="jumbaData"/>
+            <Breadcrum />
             
-            <TopAdress :jumbaData="jumbaData"/>
+            <TopAdress />
 
-            <TopFotos :jumbaData="jumbaData"/>
+            <TopFotos />
 
-            <SubMenu :items="['Algemeen','Data','Waarde']"/>
-
-            <PropertyDetails :jumbaData="jumbaData"/>
+            <PropertyDetails :items="['Algemeen','Data','Waardes']" />
 
 
         </template>

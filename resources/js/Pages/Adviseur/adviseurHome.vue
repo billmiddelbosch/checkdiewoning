@@ -79,7 +79,7 @@ function submit() {
                               </tr>
                             </thead>
                             <tbody v-for="(woning, i) in woningen" :key="i">
-                                <tr class="text-left">                              
+                                <tr v-if="woningen[i].plaats !=''" class="text-left">                              
                                   <td class="">{{ woningen[i].plaats }}</td>
                                   <td class="">{{ woningen[i].straat }}</td>
                                   <td class="">{{ woningen[i].postcode }}</td>

@@ -1,9 +1,5 @@
 <script setup>
 
-defineProps({
-    jumbaData: Object
-});
-
 </script>
 
 <template>
@@ -17,19 +13,19 @@ defineProps({
                 >
             </span>
             <span> 
-                {{ jumbaData.Filter.Province }}  
+                {{ $page.props.jumbaData.Filter.Province }}  
             </span>
             <span> 
                 >
             </span>
             <span> 
-                {{ jumbaData.Filter.City }}           
+                {{ $page.props.jumbaData.Filter.City }}           
             </span>
             <span> 
                 >
             </span>
             <span> 
-                {{ jumbaData.Filter.Street }} {{ jumbaData.Filter.Number }}         
+                {{ $page.props.jumbaData.Filter.Street }} {{ $page.props.jumbaData.Filter.Number }}         
             </span>
         </div>
     </div>

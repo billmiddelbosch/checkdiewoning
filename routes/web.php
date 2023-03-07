@@ -32,6 +32,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 })->name('home');
+Route::post('/', [HomepageController::class, 'findWoningen'])->name('home-findWoningen');
 
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
     ->name('woningdetails-finddetails');

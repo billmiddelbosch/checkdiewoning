@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
   <div class="bottom bg-white border-b border-gray-100">
       <div class="flex-grid">
@@ -45,17 +49,6 @@
       </div>
   </div>
 </template>
-
-<script>
-
-export default {
-  name: "Footer",
-  components: {
-  },
-  computed: {
-  }
-};
-</script>
 
 <style scoped>
 .bottom {
