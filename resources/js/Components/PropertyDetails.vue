@@ -1,3 +1,19 @@
+<script setup>
+import Kenmerken from '@/Components/Kenmerken.vue';
+
+defineProps({
+  items: {
+      type: Array,
+      default: null
+  	}
+})
+
+function select(value) {
+  this.menu = value
+}
+
+</script>
+
 <template>
     
     <div class="flex flex-row bg-white" >
@@ -62,36 +78,3 @@
     </div>
 
 </template>
-
-
-<script>
-import Kenmerken from '@/Components/Kenmerken.vue';
-import { refreshPaths } from 'laravel-vite-plugin';
-
-export default {
-  name: "PropertyDetails",
-  components: {
-    Kenmerken
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    }
-  },
-  data() {
-    return {
-      menu: 0
-    }
-  },
-  computed: {
-  },
-  methods: {
-    select (value) {
-      this.menu = value
-      console.log(JSON.stringify(this.menu))
-      refreshPaths
-    }
-  }
-}
-</script>
