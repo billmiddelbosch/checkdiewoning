@@ -67,7 +67,7 @@ Route::get('admin/housekeeping', [xmlController::class, 'houseKeeping'])->middle
 // OVERIG
 
 
-Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])->name('woningdetails-finddetails');
+// Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])->name('woningdetails-finddetails');
 
 Route::get('/home', [HomepageController::class, 'index'])->name('homepage.index');
 Route::post('/home', [HomepageController::class, 'searchDetails'])->name('homepage.searchdetails');

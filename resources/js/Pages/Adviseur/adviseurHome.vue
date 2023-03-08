@@ -17,7 +17,7 @@ defineProps({
       type: Boolean,
       default: false
   	}
-});
+})
 
 const form = reactive({
   postcode: null,

@@ -1,5 +1,6 @@
 <script setup>
 import Kenmerken from '@/Components/Kenmerken.vue';
+import { ref } from 'vue';
 
 defineProps({
   items: {
@@ -8,8 +9,10 @@ defineProps({
   	}
 })
 
-function select(value) {
-  this.menu = value
+const menu = ref(0)
+
+function select(index) {
+    menu.value = index
 }
 
 </script>
@@ -28,7 +31,7 @@ function select(value) {
                 <span class="col-start-8 col-span-2 py-6">Alle media</span>
             </div>
 
-            <kenmerken v-if="this.menu = 0" :key='id' :kenmerken="[
+            <kenmerken v-if="menu != 0" :key='id' :kenmerken="[
                 {
                 name: '',
                 data: ''
@@ -58,7 +61,7 @@ function select(value) {
                 },
             ]" />
 
-            <div class="p-8 border-b-8 border-[#F3F4F6]">
+            <div v-if="menu != 0" class="p-8 border-b-8 border-[#F3F4F6]">
                 <h3 class="font-bold tracking-wide">Omschrijving</h3>
                 <p>{{ $page.props.jumbaData.Payload.Funda.Description }}</p>
 
