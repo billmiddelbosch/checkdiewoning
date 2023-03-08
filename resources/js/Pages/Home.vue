@@ -2,7 +2,6 @@
 import defaultLayout from '@/Layouts/defaultLayout.vue';
 import Navigation from '@/Components/ComponentNavigation.vue';
 import Footer from '@/Components/ComponentFooter.vue';
-import Modal from '@/Components/Modal.vue';
 import { Head } from '@inertiajs/vue3';
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
@@ -13,11 +12,6 @@ defineProps({
       default: null
   	}
 });
-
-
-const closeModal = () => {
-    $props.jumbaData = null;
-};
 
 const form = reactive({
   postcode: null,
@@ -86,7 +80,7 @@ function submit() {
               
 
               <!-- Content Search Results -->
-              <Modal v-if="jumbaData != NULL" class="flex flex-row bg-white gap-10 p-24" :show=true maxWidth="2xl" @close="closeModal" >
+              <div v-if="jumbaData != NULL" class="flex flex-row bg-white gap-10 p-24" >
                 <form @submit.prevent="submit" class="flex-1 basis-1/3 m-12">
                   <div class="flex-column border-4">
                     <label class="m-6">
@@ -121,8 +115,6 @@ function submit() {
                   </div>
                   <div class="grid grid-cols-3 lg:gap-10">
                       <button class="btn-orange col-span-3 uppercase tracking-[.25em]" type="submit">Ververs</button>
-                      <button @click="closeModal"> Cancel </button>
-                      <Link :href="$route('home')">GO</Link>
                   </div>
 
                 </form>
@@ -149,11 +141,10 @@ function submit() {
                       </tr>
                   </tbody>
                 </table>
-            </Modal>
-              
-
               </div>
-              <div class="basis-1/12 bg-[#F3F4F6]"></div>
+
+            </div>
+          <div class="basis-1/12 bg-[#F3F4F6]"></div>
           </div>
 
       </template>
