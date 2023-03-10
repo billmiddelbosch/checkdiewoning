@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     {
         // Ophalen nieuw Aanbod
         $schedule->call('App\Http\Controllers\xmlController@dailyRun')
-        ->hourlyAt(55);
+        ->hourlyAt(59);
 
         // Verwijderen verwijderd Aanbod
         // $schedule->call('App\Http\Controllers\xmlController@houseKeeping')
