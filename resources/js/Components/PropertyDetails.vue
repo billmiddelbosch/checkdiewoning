@@ -2,7 +2,6 @@
 import AlgemeenDetails from '@/Components/AlgemeenDetails.vue';
 import BuurtDetails from '@/Components/BuurtDetails.vue';
 import KostenDetails from '@/Components/KostenDetails.vue';
-import { mapState } from "vuex";
 import { ref } from 'vue';
 
 defineProps({
