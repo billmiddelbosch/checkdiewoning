@@ -20,7 +20,8 @@ class xmlController extends Controller
         // SET variabelen
         $woningen = [];
         $datum = substr(now()->toDateTimeString(), 0, 10);
-        $datumtijd = substr(now()->toDateTimeString(), 0, 10) . "T" . substr(now()->toDateTimeString(), 11, 2);
+        // $datumtijd = substr(now()->toDateTimeString(), 0, 10) . "T" . substr(now()->toDateTimeString(), 11, 2);
+        $datumtijd = substr(now()->toDateTimeString(), 0, 10) . "T10";
 
         // XML to Array 
         $xmlString = file_get_contents('https://www.jumba.nl/assets/sitemap/map-1.xml');
@@ -31,13 +32,15 @@ class xmlController extends Controller
         
         $woningen = $phpArray['url'];
 
+
         // Loop voor elke woning in array 
         for ($a = 0; $a < count($woningen); $a++) {
             
             // SET variabelen gebruikt in loop 
             $datumLastmod = substr($woningen[$a]['lastmod'], 0, 13);
             $item = "";
-
+            $woningdetails = [];
+            
             // Functionaliteit als woning in laatste uur is aangepast in XML 
             if ($datumLastmod == $datumtijd) {
 
@@ -54,12 +57,12 @@ class xmlController extends Controller
                 // Haal Jumba informatie op voor die woning die laatste uur is aangepast in XML
                 $adresquery = "$straat $nummer$addition $plaats";
                 $woningdetails = $this->getPostcode($adresquery);
-
+                
                 // Als Jumba woning details beschikbaar zijn 
-                if ($woningdetails != NULL) {
-                    $status = $woningdetails[0]['Parameters']['Forsale'];
-                    $postcode = $woningdetails[0]['Payload']['Main']['Postcode']['P6'];
-                    $jumbaId = $woningdetails[0]['Payload']['ID'];
+                if ($woningdetails['NotFound'] == false) {
+                    $status = $woningdetails['Items'][0]['Parameters']['Forsale'];
+                    $postcode = $woningdetails['Items'][0]['Payload']['Main']['Postcode']['P6'];
+                    $jumbaId = $woningdetails['Items'][0]['Payload']['ID'];
 
                     $item = woning::where('jumbaId', $jumbaId)->get();
 
@@ -90,7 +93,7 @@ class xmlController extends Controller
                 }
             }
         }
-
+        
     }
 
 
@@ -134,9 +137,9 @@ class xmlController extends Controller
             ])->get('https://api.jumba.nl/v1/search?q=' . $adresquery);
             
             if ($response->successful() && $response['Items'] !== NULL) {
-                return $response['Items'];
+                return $response;
             } else {
-                echo "helaas";
+                return;
             }
             
         }
