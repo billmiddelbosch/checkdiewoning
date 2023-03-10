@@ -20,8 +20,7 @@ class xmlController extends Controller
         // SET variabelen
         $woningen = [];
         $datum = substr(now()->toDateTimeString(), 0, 10);
-        // $datumtijd = substr(now()->toDateTimeString(), 0, 10) . "T" . substr(now()->toDateTimeString(), 11, 2);
-        $datumtijd = substr(now()->toDateTimeString(), 0, 10) . "T10";
+        $datumtijd = substr(now()->toDateTimeString(), 0, 10) . "T" . substr(now()->toDateTimeString(), 11, 2);
 
         // XML to Array 
         $xmlString = file_get_contents('https://www.jumba.nl/assets/sitemap/map-1.xml');
