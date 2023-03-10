@@ -17,7 +17,7 @@ defineProps({
 
 <template>
   <div>     
-    <!-- No authentication NAV -->
+    <!-- NOT authentication NAV -->
     <nav class="bg-white border-b border-gray-100" v-if="!Login" >
 
       <!-- Primary Navigation Menu -->
@@ -40,7 +40,7 @@ defineProps({
                       </NavLink>
                       <NavLink :href="route('admin-index')" :active="route().current('admin-index')">
                           Admin
-                      </NavLink>
+                      </NavLink>                      
                   </div>
               </div>
 

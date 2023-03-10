@@ -22,21 +22,14 @@ use Inertia\Inertia;
 */
 
 
-// OPEN OMGEVING
+//// OPEN OMGEVING
 
-Route::get('/', function () {
-    return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('home');
+// HOME
+Route::get('/', [HomepageController::class, 'getAgent'])->name('home');
 Route::post('/', [HomepageController::class, 'findWoningen'])->name('home-findWoningen');
 
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
     ->name('woningdetails-finddetails');
-
 
 // ADVISEUR GESLOTEN OMGEVING
 

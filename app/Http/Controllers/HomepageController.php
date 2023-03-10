@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Http;
 use PHPUnit\Logging\JUnit\JunitXmlLogger;
 use Inertia\Inertia;
 use Symfony\Component\Console\Input\Input;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomepageController extends Controller
 {
@@ -22,9 +26,9 @@ class HomepageController extends Controller
 
     public function findWoningen(Request $request)
     {
-        $adresquery = $request->postcode . "_" . $request->huisnr;
+        $adresquery = $request->input . "_" . $request->huisnr;
         $jumbaDetails = $this->suggestJumbadata($adresquery);
-        return Inertia::render('Home', [
+        return Inertia::render('Adviseur/Home-results', [
             'jumbaData' => $jumbaDetails
         ]);
         
@@ -45,6 +49,51 @@ class HomepageController extends Controller
             }
         }
     
+    }
+
+    public function searchJumbadata($adresquery)
+    {
+        $response = Http::withHeaders([
+            'api-key' => 'xA1uNvEKgkmKGzN5HySnK5xeY8x3EFs3'
+        ])->get('https://api.jumba.nl/v1/search?q=' . $adresquery);
+
+        if ($response->successful() && $response['Items'] !== NULL) {
+            return $response['Items'];
+        } else {
+            echo "helaas";
+        }
+    }
+
+    public function getAgent() {
+        {
+            $token = 'kD1G3GtuNRRdPBrXtmBY7wtt';
+            $response = Http::withHeaders([])->get('https://api.storyblok.com/v2/cdn/stories?token=' . $token);
+            if ($response->successful() && $response !== NULL) {
+                // return $Content = $response->json();
+                if(Auth::user() == null) {
+                    return Inertia::render('Home', [
+                        'canLogin' => Route::has('login'),
+                        'canRegister' => Route::has('register'),
+                        'laravelVersion' => Application::VERSION,
+                        'phpVersion' => PHP_VERSION,
+                    ]);
+                } else {
+                    foreach ($response['stories'] as $story) {
+                        if ($story['content']['email'] != null && $story['content']['email'] == Auth::user()->email) {
+                            return Inertia::render('Home', [
+                                'canLogin' => Route::has('login'),
+                                'canRegister' => Route::has('register'),
+                                'laravelVersion' => Application::VERSION,
+                                'phpVersion' => PHP_VERSION,
+                                'Content' => $story['content'],
+                            ]);
+                        }
+                    }
+                }
+            } else {
+                echo "helaas";
+            }
+        }
     }
 
 }

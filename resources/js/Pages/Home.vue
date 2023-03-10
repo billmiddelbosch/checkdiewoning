@@ -2,20 +2,24 @@
 import defaultLayout from '@/Layouts/defaultLayout.vue';
 import Navigation from '@/Components/ComponentNavigation.vue';
 import Footer from '@/Components/ComponentFooter.vue';
-import { Head } from '@inertiajs/vue3';
 import { reactive } from 'vue'
-import { router } from '@inertiajs/vue3'
+import { Head } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
   jumbaData: {
+      type: Object,
+      default: null
+  	},
+    Content: {
       type: Object,
       default: null
   	}
 });
 
 const form = reactive({
-  postcode: null,
-  huisnr: null,
+  input: null,
 })
 
 function submit() {
@@ -26,125 +30,130 @@ function submit() {
 
 
 <template>
-    <Head title="Home" />
+    <Head title="Check Woning" />
 
     <defaultLayout>
 
         <template #nav>
-          <Navigation :Login=false />
+          <!-- NAV - NIET ingelogd -->
+          <div v-if="Content == null" class="basis-1/2 bg--jumba-red">
+            <Navigation :Login=false />
+          </div>
+          <!-- NAV - WEL ingelogd -->
+          <div v-if="Content != null" class="basis-1/2 bg--jumba-red">
+            <Navigation :Login=true />
+          </div>        
         </template>
         
         <template #main>
           
 
-          <div class="flex flex-row bg-white" >
+          <div class="flex flex-row bg-[#F3F4F6]" >
 
             <!-- linkse spacing -->
-            <div class="basis-1/12 bg-[#F3F4F6]"></div>
+            <div class="basis-1/6">
+            </div>
 
             <!-- Centrale content -->
-            <div class="basis-10/12">
+            <div class="basis-4/6">
 
               <!-- Content Home -->
-              <div v-if="jumbaData == NULL" class="flex flex-row bg-white gap-10 lg:p-24 " >
-                <span class="flex-none basis-1/3 m-12">
-                  <h1>Woning kopen?</h1>
-                  <h3>Laat ons helpen</h3>
-                </span>
-                <form @submit.prevent="submit" class="flex-1 basis-2/3 m-12">
-                  <div class="flex-column border-4">
-                      <label class="m-6 text-center">
-                        <h3 class="text-gray-700 text-center"> Straat of Postcode </h3>
-                        <input id="postcode" name="postcode" v-model="form.postcode"
-                          class="
-                            pl-12
-                            mb-6
-                            place-content-center
-                            block
-                            w-full
-                            h-16
-                            rounded-md
-                            bg-gray-100
-                            border-transparent
-                            focus:border-gray-500 focus:bg-white focus:ring-0"
-                        >
-                      </label>
-                  </div>
-                  <div class="grid grid-cols-3 gap-10">
-                      <button class="btn-orange col-span-3 uppercase tracking-[.25em]" type="submit">Zoek</button>
-                  </div>
 
-                </form>
+              <div v-if="jumbaData == NULL" class="flex flex-row lg:p-12" >
+
+                <!-- Content Home - NIET ingelogd -->
+                <div v-if="Content == null" class="basis-1/2 bg--jumba-red">
+                  <span class="bg--jumba-red ">
+                    <h3 class="py-4 text-center">Welkom bij Checkdiewoning.nl </h3>
+                    <p class="px-10">
+                      Check die wonging is onderdeel van <a href="www.jumba.nl" class="text-black">Jumba</a>. 
+                      Via checkdiewoning.nl krijg je toegang tot onze Jumba services en neem ook jij 
+                      de regie in het Woon domein. 
+                    </p>
+                    <p class="px-10">
+                      Heb je een woning op het oog om te kopen? Of wil je weten welke waarde wij hebben berekent voor jouw 
+                      eigen woning?
+                    </p><br/>
+                    <h4 class="pt-10 text-center">
+                      Wij helpen je met onze gratis woningwaarde check.
+                    </h4>
+                  </span>
+                </div>
+
+                <div v-if="Content == null" class="basis-1/2 bg-white">
+                  <h3 class="py-4 text-center">Woningwaarde </h3>
+                  <p class="px-10">
+                    Heeft je klant een woning op het oog en wil hij weten wat die woning kost? Help hem met zijn zoektocht.
+                  </p><br/>
+                  <p class="px-10">
+                    Heb je een woning op het oog en wil je weten wat die woning kost, dan kun je hier inloggen en we helpen je graag verder.
+                  </p>
+                  <p class="px-10">
+                    Bij de aanmelding heb je inlogggevens ontvangen. Heb je je nog niet aangemeld of geen inlogggevens ontvangen, 
+                    stuur dan een bericht aan <a href="sander@jumba.nl">Sander</a>. 
+                  </p><br/>
+
+                  <span class="grid justify-items-center mb-4">
+                    <a href="/login" class="btn-blue">
+                      Login
+                    </a>
+                  </span>
+
+                </div>
+
+
+                <!-- Content Home - WEL ingelogd -->
+                <div v-if="Content != null" class="basis-1/2 bg--jumba-red">
+                  <span class="">
+                    <h3 class="py-4 text-center">Welkom {{ Content['adviseurNaam'] }} </h3>
+                    <p class="px-10">
+                      Als adviseur de regie houden over jouw lead. Daar helpen we je graag bij. 
+                    </p>
+                    <p class="px-10">
+                      Via de Jumba services neem jij ook de regie in het Woon domein. 
+                      Help je klant van financiele orientatie naar aankoop, verkoop tot aan de notaris.
+                    </p>
+                  </span>
+                </div>
+
+                <div v-if="Content != null" class="basis-1/2 bg-white">
+                  <p class="p-10">
+                    Heeft je klant een woning op het oog en wil hij weten wat die woning kost? Help hem met zijn zoektocht.
+                  </p>
+                  <p class="px-10">
+                    Heb je een woning op het oog en wil je weten wat die woning kost? We helpen je graag.
+                  </p><br/>
+                  <form @submit.prevent="submit" class="p-10">
+                    <div class="flex-column border-2">
+                        <label class="m-6 ">
+                          <h4 class="text-gray-700 "> Postcode en huisnummer </h4>
+                          <input id="input" name="input" v-model="form.input"
+                            class="
+                              pl-12
+                              place-content-center
+                              block
+                              w-full
+                              h-16
+                              rounded-md
+                              bg-gray-100
+                              border-transparent
+                              focus:border-gray-500 focus:bg-white focus:ring-0"
+                          >
+                        </label>
+                        <div class="grid justify-items-center m-4">
+                            <button class="btn-orange uppercase tracking-[.25em]" type="submit">Zoek</button>
+                        </div>
+                    </div>
+
+                  </form>
+                </div>
                 
               </div>
               
-
-              <!-- Content Search Results -->
-              <div v-if="jumbaData != NULL" class="flex flex-row bg-white gap-10 p-24" >
-                <form @submit.prevent="submit" class="flex-1 basis-1/3 m-12">
-                  <div class="flex-column border-4">
-                    <label class="m-6">
-                      <span class="text-gray-700"> Straat of Postcode </span>
-                      <input id="postcode" name="postcode" v-model="form.postcode"
-                        class="
-                          mt-1
-                          pl-4
-                          block
-                          h-10
-                          w-full
-                          rounded-md
-                          bg-gray-100
-                          border-transparent
-                          focus:border-gray-500 focus:bg-white focus:ring-0"
-                      >
-                    </label>
-                    <label class="m-6">
-                      <span class="text-gray-700"> Huisnummer </span>
-                      <input id="huisnr" name="huisnr" v-model="form.huisnr"
-                        class="
-                          mt-1
-                          pl-4
-                          block
-                          h-10
-                          w-full
-                          rounded-md
-                          bg-gray-100
-                          border-transparent
-                          focus:border-gray-500 focus:bg-white focus:ring-0">
-                    </label>
-                  </div>
-                  <div class="grid grid-cols-3 lg:gap-10">
-                      <button class="btn-orange col-span-3 uppercase tracking-[.25em]" type="submit">Ververs</button>
-                  </div>
-
-                </form>
-
-                <table class="flex-1 basis-2/3 m-4">
-                  <thead class="text-left border-2">
-                    <tr class="">
-                      <th class="">Plaats</th>
-                      <th class="">Straat</th>
-                      <th class="">Huisnummer</th>
-                      <th class="">Postcode</th>
-                      <th class="text-center">Details</th>
-                    </tr>
-                  </thead>
-                  <tbody class="border-2">
-                      <tr v-for="(woningen, i) in jumbaData" :key="i" class="text-center border-2 p-10">
-                        <td v-if="woningen['Filter']['City'] != ''"> {{ woningen['Filter']['City'] }} </td>
-                        <td v-if="woningen['Filter']['City'] != ''"> {{ woningen['Filter']['Street'] }} </td>
-                        <td v-if="woningen['Filter']['City'] != ''"> {{ woningen['Filter']['Number'] }} </td>
-                        <td v-if="woningen['Filter']['City'] != ''"> {{ woningen['Filter']['Postcode'] }} </td>
-                        <td v-if="woningen['Filter']['City'] != ''" class="text-center">
-                          <a class="btn-blue" :href="'https://www.checkdiewoning.nl/woning/'+woningen['Filter']['City']+'/'+woningen['Filter']['Street']+'/'+woningen['Filter']['Number']">Details</a>
-                        </td>
-                      </tr>
-                  </tbody>
-                </table>
-              </div>
-
             </div>
-          <div class="basis-1/12 bg-[#F3F4F6]"></div>
+
+          <!-- Rechtse spacing -->
+          <div class="basis-1/6 bg-[#F3F4F6]"></div>
           </div>
 
       </template>
