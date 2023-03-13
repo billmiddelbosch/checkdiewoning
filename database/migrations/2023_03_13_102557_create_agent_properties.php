@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('agent_properties', function (Blueprint $table) {
             $table->id();
-            $table->string('agent', 255)->primary();
+            $table->string('agent', 255);
             $table->string('JumbaId', 15);
             $table->timestamps();
         });
