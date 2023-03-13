@@ -21,7 +21,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('agents', agentController::class);
-
-// Route::get('agents', [agentController::class, 'index']);
-// // Route::put('agents', [agentController::class, 'store']);
-// Route::post('agents', [agentController::class, 'store', compact() ]);
