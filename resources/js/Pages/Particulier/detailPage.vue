@@ -1,9 +1,9 @@
 <script setup>
 import defaultLayout from '@/Layouts/defaultLayout.vue';
-import Navigation from '@/Components/ComponentNavigation.vue';
-import Footer from '@/Components/ComponentFooter.vue';
+import Navigation from '@/Components/Algemeen/ComponentNavigation.vue';
+import Footer from '@/Components/Algemeen/ComponentFooter.vue';
 import Breadcrum from '@/Components/Breadcrum.vue';
-import TopAdress from '@/Components/TopAdress.vue';
+import TopAdress from '@/Components/Algemeen/TopAdress.vue';
 import TopFotos from '@/Components/TopFotos.vue';
 import SubMenu from '@/Components/SubMenu.vue';
 import PropertyDetails from '@/Components/PropertyDetails.vue';

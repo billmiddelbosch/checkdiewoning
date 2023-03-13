@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import ApplicationLogo from '@/Components/Algemeen/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
@@ -35,12 +35,12 @@ defineProps({
 
                   <!-- Navigation Links -->
                   <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                      <NavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+                      <!-- <NavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
                           Adviseur
                       </NavLink>
                       <NavLink :href="route('admin-index')" :active="route().current('admin-index')">
                           Admin
-                      </NavLink>                      
+                      </NavLink>                       -->
                   </div>
               </div>
 
@@ -83,12 +83,12 @@ defineProps({
           class="sm:hidden"
       >
           <div class="pt-2 pb-3 space-y-1">
-            <ResponsiveNavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+            <!-- <ResponsiveNavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
                 Adviseur
             </ResponsiveNavLink>
             <ResponsiveNavLink :href="route('admin-index')" :active="route().current('admin-index')">
                 Admin
-            </ResponsiveNavLink>
+            </ResponsiveNavLink> -->
           </div>
 
           <!-- Responsive Settings Options -->
@@ -124,12 +124,12 @@ defineProps({
 
                   <!-- Navigation Links -->
                   <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <NavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+                    <!-- <NavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
                           Adviseur
                       </NavLink>
                       <NavLink :href="route('admin-index')" :active="route().current('admin-index')">
                           Admin
-                      </NavLink>
+                      </NavLink> -->
                   </div>
               </div>
 
@@ -210,12 +210,12 @@ defineProps({
           class="sm:hidden"
       >
           <div class="pt-2 pb-3 space-y-1">
-            <ResponsiveNavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+            <!-- <ResponsiveNavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
                 Adviseur
             </ResponsiveNavLink>
             <ResponsiveNavLink :href="route('admin-index')" :active="route().current('admin-index')">
                 Admin
-            </ResponsiveNavLink>
+            </ResponsiveNavLink> -->
           </div>
 
           <!-- Responsive Settings Options -->

@@ -1,11 +1,11 @@
 <script setup>
 import defaultLayout from '@/Layouts/defaultLayout.vue';
-import Navigation from '@/Components/ComponentNavigation.vue';
-import Footer from '@/Components/ComponentFooter.vue';
+import Navigation from '@/Components/Algemeen/ComponentNavigation.vue';
+import Footer from '@/Components/Algemeen/ComponentFooter.vue';
 import { reactive } from 'vue'
 import { Head } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
-import { Link } from '@inertiajs/vue3';
+
 
 defineProps({
   jumbaData: {
@@ -15,6 +15,11 @@ defineProps({
     Content: {
       type: Object,
       default: null
+  	},
+    Message: {
+      type: String,
+      default: null,
+      optional: true
   	}
 });
 
@@ -36,11 +41,11 @@ function submit() {
 
         <template #nav>
           <!-- NAV - NIET ingelogd -->
-          <div v-if="Content == null" class="basis-1/2 bg--jumba-red">
+          <div v-if="!$attrs.auth.user" class="basis-1/2 bg--jumba-red">
             <Navigation :Login=false />
           </div>
           <!-- NAV - WEL ingelogd -->
-          <div v-if="Content != null" class="basis-1/2 bg--jumba-red">
+          <div v-if="$attrs.auth.user" class="basis-1/2 bg--jumba-red">
             <Navigation :Login=true />
           </div>        
         </template>
@@ -61,8 +66,10 @@ function submit() {
 
               <div v-if="jumbaData == NULL" class="flex flex-row lg:p-12" >
 
+                {{ Message }}
+
                 <!-- Content Home - NIET ingelogd -->
-                <div v-if="Content == null" class="basis-1/2 bg--jumba-red">
+                <div v-if="!$attrs.auth.user" class="basis-1/2 bg--jumba-red">
                   <span class="bg--jumba-red ">
                     <h3 class="py-4 text-center">Welkom bij Checkdiewoning.nl </h3>
                     <p class="px-10">
@@ -80,7 +87,7 @@ function submit() {
                   </span>
                 </div>
 
-                <div v-if="Content == null" class="basis-1/2 bg-white">
+                <div v-if="!$attrs.auth.user" class="basis-1/2 bg-white">
                   <h3 class="py-4 text-center">Woningwaarde </h3>
                   <p class="px-10">
                     Heeft je klant een woning op het oog en wil hij weten wat die woning kost? Help hem met zijn zoektocht.
@@ -103,7 +110,7 @@ function submit() {
 
 
                 <!-- Content Home - WEL ingelogd -->
-                <div v-if="Content != null" class="basis-1/2 bg--jumba-red">
+                <div v-if="$attrs.auth.user" class="basis-1/2 bg--jumba-red">
                   <span class="">
                     <h3 class="py-4 text-center">Welkom {{ Content['adviseurNaam'] }} </h3>
                     <p class="px-10">
@@ -116,7 +123,7 @@ function submit() {
                   </span>
                 </div>
 
-                <div v-if="Content != null" class="basis-1/2 bg-white">
+                <div v-if="$attrs.auth.user" class="basis-1/2 bg-white">
                   <p class="p-10">
                     Heeft je klant een woning op het oog en wil hij weten wat die woning kost? Help hem met zijn zoektocht.
                   </p>

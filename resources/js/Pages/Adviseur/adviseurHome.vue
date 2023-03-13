@@ -1,8 +1,8 @@
 
 <script setup>
 import defaultLayout from '@/Layouts/defaultLayout.vue';
-import Navigation from '@/Components/ComponentNavigation.vue';
-import Footer from '@/Components/ComponentFooter.vue';
+import Navigation from '@/Components/Algemeen/ComponentNavigation.vue';
+import Footer from '@/Components/Algemeen/ComponentFooter.vue';
 import { Head } from '@inertiajs/vue3';
 
 import { reactive } from 'vue'

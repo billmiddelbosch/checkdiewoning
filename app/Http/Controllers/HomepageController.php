@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\Input;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use PHPUnit\Framework\Constraint\Count;
 
 class HomepageController extends Controller
 {
@@ -27,10 +27,24 @@ class HomepageController extends Controller
     public function findWoningen(Request $request)
     {
         $adresquery = $request->input . "_" . $request->huisnr;
-        $jumbaDetails = $this->suggestJumbadata($adresquery);
-        return Inertia::render('Adviseur/Home-results', [
-            'jumbaData' => $jumbaDetails
-        ]);
+        $jumbaAantal = $this->suggestJumbadata($adresquery);
+        if ( Count($jumbaAantal) == 1) {
+            $adresquery = $jumbaAantal[0]['Filter']['Street'] . " " . $jumbaAantal[0]['Filter']['Number'] . " " . $jumbaAantal[0]['Filter']['Postcode'] . " " . $jumbaAantal[0]['Filter']['City'];
+            $jumbaDetails = $this->searchJumbadata($adresquery);
+            return Inertia::render('Adviseur/Home-results', [
+                'jumbaData' => $jumbaDetails
+            ]);
+        } else
+        { 
+            $msg = "OOOHHHH zo jammer";
+            return Inertia::render('Home', [
+                'canLogin' => Route::has('login'),
+                'canRegister' => Route::has('register'),
+                'laravelVersion' => Application::VERSION,
+                'phpVersion' => PHP_VERSION,
+                'Message' => $msg,
+            ]);
+        }
         
     }
 
@@ -58,7 +72,7 @@ class HomepageController extends Controller
         ])->get('https://api.jumba.nl/v1/search?q=' . $adresquery);
 
         if ($response->successful() && $response['Items'] !== NULL) {
-            return $response['Items'];
+            return $response->json();
         } else {
             echo "helaas";
         }
