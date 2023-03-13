@@ -20,6 +20,7 @@ defineProps({
 });
 
 const woningDetails = ref([])
+const selectie = ref(0)
 
 const form = reactive({
   input: null,
@@ -28,6 +29,10 @@ const form = reactive({
 function selecteer(woning) {
   form.input = JSON.stringify(woning['Filter']['Postcode']) + JSON.stringify(woning['Filter']['Number']);
   router.post('/', form)
+}
+
+function back() {
+  window.history.back();
 }
 
 </script>
@@ -108,7 +113,7 @@ function selecteer(woning) {
               <!-- Content Home result EEN OPTIE -->
 
               <div v-if="jumbaData.length <= 1" class="flex flex-row lg:p-12" >
-                <div class="flex-1 basis-1/3 bg--jumba-red p-10">
+                <div class="flex-1 basis-2/5 bg--jumba-red p-10">
                   <h3 class="text-center">Jumba marktwaarde</h3>
                   <span class="bg--jumba-red">
                     <p class="text-center">
@@ -120,40 +125,99 @@ function selecteer(woning) {
                       en als startpunt voor verdere waardebepalingen van de woning.
                     </p>
                     <h3 class="text-center my-8"> € {{ jumbaData[0]['Payload']['JumbaValue'][0] }} - € {{ jumbaData[0]['Payload']['JumbaValue'][1] }}</h3>
+                    <p class="text-center my-8"> Energielabel {{ jumbaData[0]['Payload']['Properties']['Energylabel']['LabelClass'] }} geldig tot {{ jumbaData[0]['Payload']['Properties']['Energylabel']['ValidUntil'] }}</p>
                   </span>
                 </div>
 
-                <div class="basis-2/3 bg-white p-10">
-                  <h3 class="text-center">De volgende stap...</h3>
-                  
-                  <span class="">
-                    <span class="flex flex-row align-content-center px-10 py-4 gap-4">
-                      <h4>Taxatierapport nodig?</h4>
-                      <a class="capital " href="sander@jumba.nl" >
-                        aanvragen
-                      </a>
-                    </span>
-                    <p class="">
-                      Een taxatiewaarde is een officiële waardeschatting die is uitgevoerd door een erkende taxateur.
-                      De taxateur gaat te werk aan een hand van een vastgelegde methode. 
-                    </p>
-                  </span>
 
-                  <span class="">
-                    <span class="flex flex-row align-content-center px-10 py-4 gap-4">
-                      <h4>Taxatierapport nodig?</h4>
-                      <a class="capital " href="sander@jumba.nl" >
-                        aanvragen
-                      </a>
+                <div v-if="selectie == 0" class="flex flex-column basis-3/5">
+
+                  <div class=" bg-white p-6">
+                    <h4 class="text-xl">Deze woning aankopen?</h4>
+                    
+                    <span class="my-8">
+                      <span class="flex flex-row gap-4">
+                        <img src="https://jumba-assets.s3.eu-west-1.amazonaws.com/Jumba-icon-klein.png" alt="Jumba-Logo" width="40">
+                        <p class="self-center"> Een taxatie is een officiële waardeschatting, uitgevoerd door een erkende taxateur. </p>
+                      </span>
+                      <span class="flex flex-row lg:align-content-center lg:px-14 py-1 lg:gap-4">
+                        <h4>Taxatierapport nodig?</h4>
+                        <a class="uppercase underline underline-offset-4" href="sander@jumba.nl" >
+                          aanvragen
+                        </a>
+                      </span>
                     </span>
-                    <p class="">
-                      Een taxatiewaarde is een officiële waardeschatting die is uitgevoerd door een erkende taxateur.
-                      De taxateur gaat te werk aan een hand van een vastgelegde methode. 
-                    </p>
-                  </span>
+
+                    <span class="my-8">
+                      <span class="flex flex-row gap-4">
+                        <img src="https://jumba-assets.s3.eu-west-1.amazonaws.com/Jumba-icon-klein.png" alt="Jumba-Logo" width="40">
+                        <p class="self-center"> Een aankoop rapport is een zeer zinvolle hulp als voorbereiding op een bod. </p>
+                      </span>
+                      <span class="flex flex-row lg:align-content-center lg:px-14 py-1 lg:gap-4">
+                        <h4>Aankoop rapport gewenst?</h4>
+                        <a class="uppercase underline underline-offset-4" href="sander@jumba.nl" >
+                          aanvragen
+                        </a>
+                      </span>
+                    </span>
+
+                  </div>
+
+                  <div class=" bg-white p-6">
+                    <h4 class="text-xl">Deze woning verkopen?</h4>
+                    
+                    <span class="my-8">
+                      <span class="flex flex-row gap-4">
+                        <img src="https://jumba-assets.s3.eu-west-1.amazonaws.com/Jumba-icon-klein.png" alt="Jumba-Logo" width="40">
+                        <p class="self-center">Samen met je klant deze woning professioneel verkopen. Dat kan!  </p>
+                      </span>
+                      <span class="flex flex-row lg:align-content-center lg:px-14 py-1 lg:gap-6">
+                        <h4>Deze woning verkopen ?</h4>
+                        <a class="uppercase underline underline-offset-4" href="sander@jumba.nl" >
+                          inschrijven
+                        </a>
+                        <a class="uppercase underline underline-offset-4" @click="selectie=1" >
+                          Bereken je besparing
+                        </a>
+                      </span>
+                    </span>
+
+                    <span class="my-8">
+                      <span class="flex flex-row gap-4">
+                        <img src="https://jumba-assets.s3.eu-west-1.amazonaws.com/Jumba-icon-klein.png" alt="Jumba-Logo" width="40">
+                        <p class="self-center"> Op Jumba 100% gratis de markt aftasten. Dat kan!. </p>
+                      </span>
+                      <span class="flex flex-row lg:align-content-center lg:px-14 py-1 lg:gap-4">
+                        <h4>Deze woning claimen op Jumba?</h4>
+                        <a class="uppercase underline underline-offset-4" :href="'https://jumba.nl/registratie?e-mailadresadviseur=' + 'test' + 'Midd'" >
+                          claim
+                        </a>
+                      </span>
+                    </span>
+
+                  </div>
 
                 </div>
-                
+
+
+                <!-- Bereken besparing -->
+                <div v-if="selectie == 1" class="flex flex-column basis-3/5">
+                  yep bereken besparing
+                </div>
+
+                <!-- Bereken besparing -->
+                <div v-if="selectie == 2" class="flex flex-column basis-3/5">
+                  yep bereken besparing
+                </div>
+
+                <!-- Op elke subpagina -->
+                <div v-if="selectie > 0" class="flex flex-column basis-3/5">
+                  <a class="btn button-primary" @click="back()" >
+                     terug
+                  </a>
+                </div>
+
+
               </div>
 
 
