@@ -7,6 +7,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdviseurController;
 use App\Http\Controllers\agentController;
+use App\Http\Controllers\resultController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,7 +27,7 @@ use Inertia\Inertia;
 //// OPEN OMGEVING
 
 // HOME
-Route::get('/', [HomepageController::class, 'getAgent'])->name('home');
+Route::get('/', [HomepageController::class, 'index'])->name('home');
 Route::post('/', [HomepageController::class, 'findWoningen'])->name('home-findWoningen');
 
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
@@ -37,7 +38,7 @@ Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::
 Route::get('/adviseur', [AdviseurController::class, 'index'])->middleware(['auth', 'verified'])->name('adviseur-index');
 Route::post('/adviseur', [AdviseurController::class, 'aanbodOnDate'])->name('adviseur-aanbodOnDate');
 
-Route::post('/home-results', [HomepageController::class, 'findWoningen'])->name('home-findWoningen'); // WIP
+Route::post('/home-results', [resultController::class, 'index'])->name('result-index');
 
 
 // BOILER GESLOTEN OMGEVING

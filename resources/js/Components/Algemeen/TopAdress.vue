@@ -1,4 +1,12 @@
 <script setup>
+import { defineProps } from "vue";
+
+const props = defineProps({
+  gelditTot: String,
+});
+
+
+//Items[0].Payload.Properties.Energylabel.ValidUntil;
 
 </script>
 
@@ -7,13 +15,18 @@
     <div class="mt-6 bg-[#F3F4F6]">
         <div class="flex flex-row bg-white" >
             <span class="basis-1/6"></span>
-            <div class="basis-5/6 flex-col py-6 "> 
+            <div class="basis-2/6 flex-col grid content-center "> 
                 <h2>{{ $page.props.jumbaData['Items'][0]['Filter']['Street'] }} {{ $page.props.jumbaData['Items'][0]['Filter']['Number'] }}</h2>
-                <h3>{{ $page.props.jumbaData['Items'][0]['Filter']['Postcode'] }} {{ $page.props.jumbaData['Items'][0]['Filter']['City'] }}</h3>
+                <h3 class="text-[#E64750]">{{ $page.props.jumbaData['Items'][0]['Filter']['Postcode'] }} {{ $page.props.jumbaData['Items'][0]['Filter']['City'] }}</h3>
             </div>
-            <div class="col-start-4 col-span-1 py-6 my-4"> 
-
+            <div class="basis-2/6 flex-col grid content-center justify-items-end py-6"> 
+                <p class="text-xl font-bold">€ {{ $page.props.jumbaData['Items'][0]['Payload']['JumbaValue'][0] }} - € {{ $page.props.jumbaData['Items'][0]['Payload']['JumbaValue'][1] }}</p>
+                <p class="text-[#E64750]">Onze waarde inschatting</p>
+                <p class="text-xl font-bold pt-2">- {{ $page.props.jumbaData['Items'][0]['Payload']['Properties']['Energylabel']['LabelClass'] }} - 
+                <span class="text-base font-normal"> geldig tot {{ gelditTot }} </span></p>
+                <p class="text-[#E64750]">Het energielabel</p>
             </div>
+            <span class="basis-1/6"></span>
         </div>
     </div>
 

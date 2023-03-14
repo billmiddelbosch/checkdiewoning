@@ -132,11 +132,11 @@ function submit() {
                   </p><br/>
                   <form @submit.prevent="submit" class="p-10">
                     <div class="flex-column border-2">
-                        <label class="m-6 ">
-                          <h4 class="text-gray-700 "> Postcode en huisnummer </h4>
-                          <input id="input" name="input" v-model="form.input"
+                        <label class="m-4 ">
+                          <h4 class="text-gray-700 "> </h4>
+                          <input id="input" name="input" v-model="form.input" placeholder="Postcode Huisnummer"
                             class="
-                              pl-12
+                              pl-4
                               place-content-center
                               block
                               w-full
@@ -147,7 +147,7 @@ function submit() {
                               focus:border-gray-500 focus:bg-white focus:ring-0"
                           >
                         </label>
-                        <div class="grid justify-items-center m-4">
+                        <div class="grid justify-items-center m-2">
                             <button class="btn-orange uppercase tracking-[.25em]" type="submit">Zoek</button>
                         </div>
                     </div>
