@@ -45,7 +45,7 @@ class aankoopRapport extends Mailable
         return new Content(
             view: 'emails.aankoop.rapport',
             with: [
-                'naam' => "naam variabele", 
+                'naam' => "naam variabele",
                 'order' => "order variabele",
             ],
 
