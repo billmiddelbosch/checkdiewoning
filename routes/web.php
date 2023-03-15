@@ -11,6 +11,8 @@ use App\Http\Controllers\resultController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,11 @@ use Inertia\Inertia;
 
 
 //// OPEN OMGEVING
+
+Route::get('jumba', function() {
+    return redirect()->away('https://www.jumba.nl');
+})->name('jumba');
+
 
 // HOME
 Route::get('/', [HomepageController::class, 'index'])->name('home');
