@@ -21,7 +21,6 @@ defineProps({
   	}
 });
 
-const woningDetails = ref([])
 const selectie = ref(99)
 const items= ['Kopen','Verkopen']
 
@@ -29,11 +28,6 @@ const items= ['Kopen','Verkopen']
 // Menu selectie afhandeling
 function select(index) {
     selectie.value = index
-}
-
-function selecteer(woning) {
-  form.input = JSON.stringify(woning['Filter']['Postcode']) + JSON.stringify(woning['Filter']['Number']);
-  router.post('/', form)
 }
 
 // Klant gegevens opslaan
@@ -116,7 +110,7 @@ function submit() {
                     </div> -->
 
                     <!-- menu 0 - VERKOPEN -->
-                    <div v-if="selectie == 1" class="flex flex-column basis-3/5 border-t-4">
+                    <!-- <div v-if="selectie == 1" class="flex flex-column basis-3/5 border-t-4">
                       <div class="flex-1 basis-2/5 p-10">
                         <span class="my-8">
                           <span class="flex flex-row gap-4">
@@ -148,7 +142,7 @@ function submit() {
                         </span>
                       </div>
             
-                    </div>
+                    </div> -->
 
                     <!-- menu 2  NU NIET GEBRUIKT -->
                     <!-- <div v-if="selectie == 2" class="flex flex-column basis-3/5 border-t-4">
@@ -194,13 +188,45 @@ function submit() {
                                   <input type="checkbox" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']" class="sr-only peer">
                                   <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                 </label> -->
-                                <span class="grid place-items-center self-center h-16">
+                                <span v-if="product.content.type == 'aankoop'" class="grid place-items-center self-center h-16">
                                   <input type="radio" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']"
                                     class=" ">
                                 </span>
                                 <td v-if="product.content.type == 'aankoop'" class=" ">{{ product['content']['naam'] }}</td>
                                 <td v-if="product.content.type == 'aankoop'" class="">{{ product['content']['beschrijving'] }}</td>
                                 <td v-if="product.content.type == 'aankoop'" class="">€ {{ product['content']['prijs'] }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </div>
+
+                        <!-- menu 1 - VERKOPEN -->
+                        <div v-if="selectie == 1" class="flex flex-column basis-3/5 border-t-4 p-12">
+                          <h3>Verkoop hulpjes voor jouw klant</h3>
+                          <table class="mt-30">
+                            <thead class="text-left h-10 font-bold border-b border-slate-200">
+                              <tr class="">
+                                <th class="flex-none w-24">Selecteer</th>
+                                <th class="flex-none w-30">Naam</th>
+                                <th class="grow">Omschrijving</th>
+                                <th class="flex-none">Prijs</th>
+                              </tr>
+                            </thead>
+                            <tbody class="">
+                              <tr  v-for="(product, i) in cmsProducts['stories']" :key="i" class="flex-cols-4 h-16 space-x-4 even:bg-slate-100">  
+                                     
+                                <!-- <label class="relative inline-flex items-center cursor-pointer">
+                                  <input type="checkbox" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']" class="sr-only peer">
+                                  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                </label> -->
+                                <span v-if="product.content.type == 'verkoop'" class="grid place-items-center self-center h-16">
+                                  <input type="radio" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']"
+                                    class=" ">
+                                </span>
+                                <td v-if="product.content.type == 'verkoop'" class=" ">{{ product['content']['naam'] }}</td>
+                                <td v-if="product.content.type == 'verkoop'" class="">{{ product['content']['beschrijving'] }}</td>
+                                <td v-if="product.content.type == 'verkoop'" class="">€ {{ product['content']['prijs'] }}</td>
                               </tr>
                             </tbody>
                           </table>

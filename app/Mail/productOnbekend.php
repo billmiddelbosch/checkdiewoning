@@ -8,15 +8,18 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-class verkoopInschrijving extends Mailable
+class productOnbekend extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(protected $klantDetails)
     {
         //
     }
@@ -27,7 +30,11 @@ class verkoopInschrijving extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verkoop Inschrijving',
+            from: new Address(Auth::user()->email, Auth::user()->name),
+            replyTo: [
+                new Address(Auth::user()->email, Auth::user()->name),
+            ],
+            subject: 'Product Onbekend',
         );
     }
 
@@ -37,8 +44,13 @@ class verkoopInschrijving extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.verkoop.inschrijving',
-        );
+            view: 'emails.onbekend',
+            with: [
+                'klantDetails' => $this->klantDetails,
+                'user' => Auth::user(),
+                'woning' =>  Session::get('woningDetails'),
+            ],
+    );
     }
 
     /**

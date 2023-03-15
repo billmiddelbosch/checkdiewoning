@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\Input;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use PHPUnit\Framework\Constraint\Count;
 
 class HomepageController extends Controller
@@ -48,6 +49,7 @@ class HomepageController extends Controller
         if ( Count($jumbaAantal) == 1) {
             $adresquery = $jumbaAantal[0]['Filter']['Street'] . " " . $jumbaAantal[0]['Filter']['Number'] . " " . $jumbaAantal[0]['Filter']['Postcode'] . " " . $jumbaAantal[0]['Filter']['City'];
             $jumbaDetails = $this->searchJumbadata($adresquery);
+            Session::put('woningDetails', $jumbaDetails['Items'][0]['Input']['Fulltext']);
             $products = $this->getCMSdata('products');
             return Inertia::render('Adviseur/Home-results', [
                 'jumbaData' => $jumbaDetails,
