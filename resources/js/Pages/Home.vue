@@ -64,9 +64,7 @@ function submit() {
 
               <!-- Content Home -->
 
-              <div v-if="jumbaData == NULL" class="flex flex-row lg:p-12" >
-
-                {{ Message }}
+              <div class="flex flex-row lg:p-12" >
 
                 <!-- Content Home - NIET ingelogd -->
                 <div v-if="!$attrs.auth.user" class="basis-1/2 bg--jumba-red">

@@ -22,8 +22,9 @@ const props = defineProps({
             <div class="basis-2/6 flex-col grid content-center justify-items-end py-6"> 
                 <p class="text-xl font-bold">€ {{ $page.props.jumbaData['Items'][0]['Payload']['JumbaValue'][0] }} - € {{ $page.props.jumbaData['Items'][0]['Payload']['JumbaValue'][1] }}</p>
                 <p class="text-[#E64750]">Onze waarde inschatting</p>
-                <p class="text-xl font-bold pt-2">- {{ $page.props.jumbaData['Items'][0]['Payload']['Properties']['Energylabel']['LabelClass'] }} - 
-                <span class="text-base font-normal"> geldig tot {{ gelditTot }} </span></p>
+                <p class="text-xl font-bold pt-2"> {{ $page.props.jumbaData['Items'][0]['Payload']['Properties']['Energylabel']['LabelClass'] }} 
+                <!-- <span class="text-base font-normal"> geldig tot {{ gelditTot }} </span> -->
+                </p>
                 <p class="text-[#E64750]">Het energielabel</p>
             </div>
             <span class="basis-1/6"></span>

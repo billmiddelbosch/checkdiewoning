@@ -28,10 +28,6 @@ use Illuminate\Support\Facades\Redirect;
 
 //// OPEN OMGEVING
 
-Route::get('jumba', function() {
-    return redirect()->away('https://www.jumba.nl');
-})->name('jumba');
-
 
 // HOME
 Route::get('/', [HomepageController::class, 'index'])->name('home');

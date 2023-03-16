@@ -46,8 +46,8 @@ class HomepageController extends Controller
     {
         $adresquery = $request->input . "_" . $request->huisnr;
         $jumbaAantal = $this->suggestJumbadata($adresquery);
-        if ( Count($jumbaAantal) == 1) {
-            $adresquery = $jumbaAantal[0]['Filter']['Street'] . " " . $jumbaAantal[0]['Filter']['Number'] . " " . $jumbaAantal[0]['Filter']['Postcode'] . " " . $jumbaAantal[0]['Filter']['City'];
+        if ( Count($jumbaAantal) > 0) {
+            $adresquery = $jumbaAantal[0]['Filter']['Street'] . " " . $jumbaAantal[0]['Payload']['Main']['Number'] . " " . $jumbaAantal[0]['Filter']['Postcode'] . " " . $jumbaAantal[0]['Filter']['City'];
             $jumbaDetails = $this->searchJumbadata($adresquery);
             Session::put('woningDetails', $jumbaDetails['Items'][0]['Input']['Fulltext']);
             $products = $this->getCMSdata('products');
@@ -56,15 +56,9 @@ class HomepageController extends Controller
                 'cmsProducts' => $products
             ]);
         } else
-        { 
+        {
             $msg = "OOOHHHH zo jammer";
-            return Inertia::render('Home', [
-                'canLogin' => Route::has('login'),
-                'canRegister' => Route::has('register'),
-                'laravelVersion' => Application::VERSION,
-                'phpVersion' => PHP_VERSION,
-                'Message' => $msg,
-            ]);
+            return $jumbaAantal;
         }
         
     }

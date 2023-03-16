@@ -21,12 +21,13 @@ defineProps({
   	}
 });
 
-const selectie = ref(99)
-const items= ['Kopen','Verkopen']
+const selectie = ref(2)
+const items= ['Kopen','Verkopen', 'Overig']
 
 
 // Menu selectie afhandeling
 function select(index) {
+    form.selected = null;
     selectie.value = index
 }
 
@@ -34,7 +35,7 @@ function select(index) {
 const form = reactive({
   naam: null,
   email: null,
-  selected: "",
+  selected: null,
 })
 
 function submit() {
@@ -88,19 +89,19 @@ function submit() {
                     </div>
 
                     <!-- Op subpagina 0 of 1 -->
-                    <div v-if="selectie == 0 | selectie == 1" class="flex flex-column basis-3/5 border-t-4">
+                    <div v-if="selectie >= 0" class="flex flex-column basis-3/5 border-t-4">
                       <form @submit.prevent="submit">
 
                         <!-- menu 0 - KOPEN -->
                         <div v-if="selectie == 0" class="flex flex-column basis-3/5 border-t-4 p-12">
-                          <h3>Aankoop hulpjes voor jouw klant</h3>
+                          <h3>Aankoop hulp</h3>
                           <table class="mt-30">
                             <thead class="text-left h-10 font-bold border-b border-slate-200">
                               <tr class="">
                                 <th class="flex-none w-24">Selecteer</th>
                                 <th class="flex-none w-30">Naam</th>
                                 <th class="grow">Omschrijving</th>
-                                <th class="flex-none">Prijs</th>
+                                <th class="flex-none w-40">Prijs</th>
                               </tr>
                             </thead>
                             <tbody v-for="(product, i) in cmsProducts['stories']" :key="i" class="">
@@ -120,14 +121,14 @@ function submit() {
 
                         <!-- menu 1 - VERKOPEN -->
                         <div v-if="selectie == 1" class="flex flex-column basis-3/5 border-t-4 p-12">
-                          <h3>Verkoop hulpjes voor jouw klant</h3>
+                          <h3>Verkoop hulp</h3>
                           <table class="mt-30">
                             <thead class="text-left h-10 font-bold border-b border-slate-200">
                               <tr class="">
                                 <th class="flex-none w-24">Selecteer</th>
-                                <th class="flex-none w-30">Naam</th>
+                                <th class="hidden">Naam</th>
                                 <th class="grow">Omschrijving</th>
-                                <th class="flex-none">Prijs</th>
+                                <th class="flex-none w-40">Prijs</th>
                               </tr>
                             </thead>
                             <tbody v-for="(product, i) in cmsProducts['stories']" :key="i" class="">
@@ -136,7 +137,7 @@ function submit() {
                                   <input type="radio" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']"
                                     class=" ">
                                 </span>
-                                <td v-if="product.content.type == 'verkoop'" class=" ">{{ product['content']['naam'] }}</td>
+                                <td v-if="product.content.type == 'verkoop'" class="hidden">{{ product['content']['naam'] }}</td>
                                 <td v-if="product.content.type == 'verkoop'" class="">{{ product['content']['beschrijving'] }}</td>
                                 <td v-if="product.content.type == 'verkoop'" class="">€ {{ product['content']['prijs'] }}</td>
                               </tr>
@@ -145,8 +146,36 @@ function submit() {
 
                         </div>
 
+                        <!-- menu 2 - Overig -->
+                        <div v-if="selectie == 2" class="flex flex-column basis-3/5 border-t-4 p-12">
+                          <h3>Overige diensten</h3>
+                          <table class="mt-30">
+                            <thead class="text-left h-10 font-bold border-b border-slate-200">
+                              <tr class="">
+                                <th class="flex-none w-24">Selecteer</th>
+                                <th class="flex-none w-30">Naam</th>
+                                <th class="grow">Omschrijving</th>
+                                <th class="flex-none w-40">Prijs</th>
+                              </tr>
+                            </thead>
+                            <tbody v-for="(product, i) in cmsProducts['stories']" :key="i" class="">
+                              <tr v-if="product.content.type == 'overig'" class="flex-cols-4 h-16 space-x-4 even:bg-slate-100">                                       
+                                <span v-if="product.content.type == 'overig'" class="grid place-items-center self-center h-16">
+                                  <input type="radio" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']"
+                                    class=" ">
+                                </span>
+                                <td v-if="product.content.type == 'overig'" class=" ">{{ product['content']['naam'] }}</td>
+                                <td v-if="product.content.type == 'overig'" class="">{{ product['content']['beschrijving'] }}</td>
+                                <td v-if="product.content.type == 'overig'" class="">€ {{ product['content']['prijs'] }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </div>
+
+
                         <span  v-for="(product, i) in cmsProducts['stories']" :key="i">
-                          <div v-if="product.name == form.selected && !product.content.leadout" class="flex-column">
+                          <div v-if="product.content.naam == form.selected && !product.content.leadout" class="flex-column">
                               <label class="m-6">
                                 <h4 class="text-[#E64750] ">Bestel dit product voor je klant </h4>
                                 <span class="flex flex-cols-6 gap-12">
@@ -184,7 +213,7 @@ function submit() {
                                   </span>
                               </label>
                             </div>
-                            <div v-if="product.name == form.selected && product.content.leadout" class="flex-column" >
+                            <div v-if="product.content.naam == form.selected && product.content.leadout" class="flex-column" >
                               <div class="flex flex-row justify-center items-center gap-8 p-8" >
                                 <h4 class="text-[#E64750] ">Schrijf in voor je klant </h4>
                                 <a class="btn btn-blue" :href=product.content.leadoutUrl.cached_url :target=product.content.leadoutUrl.target >
@@ -206,16 +235,7 @@ function submit() {
 
                 </div>
 
-              </div>
-
-
-                <!-- Content Home - WEL ingelogd -->
-                <div class="basis-1/2 bg--jumba-red">
-                </div>
-
-                <div class="basis-1/2 bg-white">
-                </div>
-              
+              </div>              
 
             </div>
 

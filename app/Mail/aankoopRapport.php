@@ -30,7 +30,6 @@ class aankoopRapport extends Mailable
     {
         return new Envelope(
             from: new Address(Auth::user()->email, Auth::user()->name),
-            // from: new Address('bill@jumba.nl', 'Bill Middelbosch'),
             replyTo: [
                 new Address('sander@jumba.nl', 'Sander van der AA'),
             ],        
