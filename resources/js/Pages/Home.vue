@@ -12,10 +12,6 @@ defineProps({
       type: Object,
       default: null
   	},
-    Content: {
-      type: Object,
-      default: null
-  	},
     Message: {
       type: String,
       default: null,
@@ -110,7 +106,7 @@ function submit() {
                 <!-- Content Home - WEL ingelogd -->
                 <div v-if="$attrs.auth.user" class="basis-1/2 bg--jumba-red">
                   <span class="">
-                    <h3 class="py-4 text-center">Welkom {{ Content['adviseurNaam'] }} </h3>
+                    <h3 class="py-4 text-center">Welkom {{ $attrs.auth.user.name }}</h3>
                     <p class="px-10">
                       Als adviseur de regie houden over jouw lead. Daar helpen we je graag bij. 
                     </p>

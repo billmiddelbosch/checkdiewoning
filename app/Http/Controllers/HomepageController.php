@@ -15,33 +15,6 @@ use PHPUnit\Framework\Constraint\Count;
 
 class HomepageController extends Controller
 {
-    public function index()
-    {
-        $response = $this->getCMSdata('Agent');
-
-        if(Auth::user() == null) {
-            return Inertia::render('Home', [
-                'canLogin' => Route::has('login'),
-                'canRegister' => Route::has('register'),
-                'laravelVersion' => Application::VERSION,
-                'phpVersion' => PHP_VERSION,
-            ]);
-        } else {
-            foreach ($response['stories'] as $story) {
-                if ($story['content']['email'] != null && $story['content']['email'] == Auth::user()->email) {
-                    return Inertia::render('Home', [
-                        'canLogin' => Route::has('login'),
-                        'canRegister' => Route::has('register'),
-                        'laravelVersion' => Application::VERSION,
-                        'phpVersion' => PHP_VERSION,
-                        'Content' => $story['content'],
-                    ]);
-                }
-            }
-        }
-    }
-
-
     public function findWoningen(Request $request)
     {
         $adresquery = $request->input . "_" . $request->huisnr;

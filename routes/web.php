@@ -27,10 +27,18 @@ use Illuminate\Support\Facades\Redirect;
 
 
 //// OPEN OMGEVING
+Route::get('/', function () {
+    return Inertia::render('Home', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('home');
 
 
 // HOME
-Route::get('/', [HomepageController::class, 'index'])->name('home');
+// Route::get('/', [HomepageController::class, 'index'])->name('home');
 Route::post('/', [HomepageController::class, 'findWoningen'])->name('home-findWoningen');
 
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
