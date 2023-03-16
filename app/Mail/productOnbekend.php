@@ -30,7 +30,7 @@ class productOnbekend extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(Auth::user()->email, Auth::user()->name),
+            from: new Address('bill@jumba.nl', Auth::user()->name),
             replyTo: [
                 new Address(Auth::user()->email, Auth::user()->name),
             ],
