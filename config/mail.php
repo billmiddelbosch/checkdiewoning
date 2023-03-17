@@ -103,7 +103,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'bill@jumba.nl'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'name' => env('MAIL_FROM_NAME', 'Jumba'),
     ],
 
     /*
