@@ -63,53 +63,51 @@ function submit() {
               <div class="flex flex-row lg:p-12" >
 
                 <!-- Content Home - NIET ingelogd -->
-                <div v-if="!$attrs.auth.user" class="basis-1/2 bg--jumba-red">
-                  <span class="bg--jumba-red ">
+                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg--jumba-red px-10">
+                  <span class=" ">
                     <h3 class="py-4 text-center">Welkom bij Checkdiewoning.nl </h3>
                     <p class="px-10">
-                      Check die wonging is onderdeel van <a href="www.jumba.nl" class="text-black">Jumba</a>. 
-                      Via checkdiewoning.nl krijg je toegang tot onze Jumba services en neem ook jij 
-                      de regie in het Woon domein. 
-                    </p>
+                      <span class="text-bold">'Check die wonging'</span> is onderdeel van <a href="www.jumba.nl" class="text-bold">Jumba.nl</a>
+                    </p><br/>
                     <p class="px-10">
-                      Heb je een woning op het oog om te kopen? Of wil je weten welke waarde wij hebben berekent voor jouw 
-                      eigen woning?
+                      Via checkdiewoning.nl neem jij de regie over alle aspecten in de 'woonreis' van je klant.
                     </p><br/>
                     <h4 class="pt-10 text-center">
-                      Wij helpen je met onze gratis woningwaarde check.
+                      Wij helpen je met onze gratis woning checker.
                     </h4>
                   </span>
                 </div>
 
-                <div v-if="!$attrs.auth.user" class="basis-1/2 bg-white">
-                  <h3 class="py-4 text-center">Woningwaarde </h3>
-                  <p class="px-10">
-                    Heeft je klant een woning op het oog en wil hij weten wat die woning kost? Help hem met zijn zoektocht.
-                  </p><br/>
-                  <p class="px-10">
-                    Heb je een woning op het oog en wil je weten wat die woning kost, dan kun je hier inloggen en we helpen je graag verder.
-                  </p>
-                  <p class="px-10">
-                    Bij de aanmelding heb je inlogggevens ontvangen. Heb je je nog niet aangemeld of geen inlogggevens ontvangen, 
-                    stuur dan een bericht aan <a href="sander@jumba.nl">Sander</a>. 
-                  </p><br/>
+                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg-white">
+                  <span class="">
 
-                  <span class="grid justify-items-center mb-4">
-                    <a href="/login" class="btn-blue">
-                      Login
-                    </a>
+                    <h3 class="py-4 text-center">Woningwaarde </h3>
+                    <p class="px-10">
+                      Gaat je een volgende stap maken? Help hem met zijn zoektocht.
+                    </p><br/>
+                    <p class="px-10">
+                      Bij de aanmelding heb je inlogggevens ontvangen. Heb je je nog niet aangemeld of geen inlogggevens ontvangen, 
+                      meld je dan <a class="text-bold" href="/registreer">HIER</a> gratis. 
+                    </p><br/>
+                    
+                    <span class="flex items-center justify-center">
+                      <a href="/login" class="btn-blue">
+                        Login
+                      </a>
+                    </span>
+                    
                   </span>
 
                 </div>
 
 
                 <!-- Content Home - WEL ingelogd -->
-                <div v-if="$attrs.auth.user" class="basis-1/2 bg--jumba-red">
+                <div v-if="$attrs.auth.user" class="basis-1/2 bg--jumba-red py-12">
                   <span class="">
                     <h3 class="py-4 text-center">Welkom {{ $attrs.auth.user.name }}</h3>
                     <p class="px-10">
                       Als adviseur de regie houden over jouw lead. Daar helpen we je graag bij. 
-                    </p>
+                    </p><br/>
                     <p class="px-10">
                       Via de Jumba services neem jij ook de regie in het Woon domein. 
                       Help je klant van financiele orientatie naar aankoop, verkoop tot aan de notaris.
