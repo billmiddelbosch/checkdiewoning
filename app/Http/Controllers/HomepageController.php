@@ -23,7 +23,9 @@ class HomepageController extends Controller
             $adresquery = $jumbaAantal[0]['Filter']['Street'] . " " . $jumbaAantal[0]['Payload']['Main']['Number'] . " " . $jumbaAantal[0]['Filter']['Postcode'] . " " . $jumbaAantal[0]['Filter']['City'];
             $jumbaDetails = $this->searchJumbadata($adresquery);
             Session::put('woningDetails', $jumbaDetails['Items'][0]['Input']['Fulltext']);
+            Session::put('jumbaId', $jumbaDetails['Items'][0]['Payload']['ID']);
             $products = $this->getCMSdata('products');
+            Session::put('cmsProducts', $products['stories']);
             return Inertia::render('Adviseur/Home-results', [
                 'jumbaData' => $jumbaDetails,
                 'cmsProducts' => $products

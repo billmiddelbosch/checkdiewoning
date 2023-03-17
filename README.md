@@ -45,3 +45,8 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 - npm run dev        >> create FE build and server on localhost
 - php artisan serve  >> create local BE server
 
+
+>> Table creeren
+
+- php artisan make:migration <naam tabel>
+- php artisan make:model <naam tabel>

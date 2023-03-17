@@ -6,11 +6,11 @@ use App\Mail\aankoopRapport;
 use App\Mail\productOnbekend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use App\Models\agentOrders;
+use Illuminate\Support\Facades\Session;
 
 
 class resultController extends Controller
@@ -18,6 +18,9 @@ class resultController extends Controller
     public function index(Request $request)
     {   
         if ($request->selected == 'Aankoop Rapport') {
+
+            $this->storeOrder($request);
+
             Mail::to('aankoop@jumba.nl')
             ->cc('sander@jumba.nl')
             ->send(new aankoopRapport($request));
@@ -25,6 +28,7 @@ class resultController extends Controller
         }
 
         if ($request->selected == 'Jumba account') {
+
             $naam = explode(' ', $request->naam);
             $url = 'https://jumba.nl/registratie?e-mailadresadviseur=' . Auth::user()->email . '&e-mailadresklant=' . $request->email . '&voornaamklant=' . $naam[0] . '&achternaamklant=' . $naam[1];
             return Inertia::location($url);
@@ -67,6 +71,30 @@ class resultController extends Controller
 
         Mail::to('bill@jumba.nl')
         ->send(new productOnbekend($request));
+    }
+
+    public function storeOrder($request) 
+    {
+        $order = new agentOrders();
+
+        foreach (Session::get('cmsProducts') as $product) {
+            if ($product['content']['naam'] == $request->selected) {
+                $prijs = $product['content']['prijs'];
+            };
+        }
+ 
+        $order->agentNaam = Auth::user()->name;
+        $order->agentEmail = Auth::user()->email;
+        $order->productNaam = $request->selected;
+        $order->productPrijs = $prijs;
+        $order->datum = substr(now()->toDateTimeString(), 0, 10);
+        $order->jumbaId = Session::get('jumbaId');
+        $order->gefactureerd = false;
+
+        $order->save();
+ 
+        return;
+
     }
 
     public function jumba()
