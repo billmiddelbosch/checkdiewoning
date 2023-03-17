@@ -63,7 +63,7 @@ function submit() {
               <div class="flex flex-row lg:p-12" >
 
                 <!-- Content Home - NIET ingelogd -->
-                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg--jumba-red px-10">
+                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg--jumba-red py-10">
                   <span class=" ">
                     <h3 class="py-4 text-center">Welkom bij Checkdiewoning.nl </h3>
                     <p class="px-10">
@@ -81,20 +81,21 @@ function submit() {
                 <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg-white">
                   <span class="">
 
-                    <h3 class="py-4 text-center">Woningwaarde </h3>
+                    <!-- <h3 class="py-4 text-center">Woning waarde </h3> -->
                     <p class="px-10">
-                      Gaat je een volgende stap maken? Help hem met zijn zoektocht.
-                    </p><br/>
-                    <p class="px-10">
-                      Bij de aanmelding heb je inlogggevens ontvangen. Heb je je nog niet aangemeld of geen inlogggevens ontvangen, 
-                      meld je dan <a class="text-bold" href="/registreer">HIER</a> gratis. 
+                      Bij de aanmelding heb je inlogggevens ontvangen. Log in om je klant te helpen bij de volgende stap in zijn/haar woonreis.
                     </p><br/>
                     
-                    <span class="flex items-center justify-center">
+                    <span class="flex items-center justify-center m-4">
                       <a href="/login" class="btn-blue">
                         Login
                       </a>
                     </span>
+                    <br/>
+                    <p class="px-10">
+                      Heb je je nog geen inlogggevens, 
+                      meld je dan <a class="text-bold" href="/register">HIER</a> gratis aan. 
+                    </p><br/>
                     
                   </span>
 
