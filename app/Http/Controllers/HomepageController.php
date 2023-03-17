@@ -30,8 +30,11 @@ class HomepageController extends Controller
             ]);
         } else
         {
-            $msg = "OOOHHHH zo jammer";
-            return $jumbaAantal;
+            $msg = "Helaas geen woning gevonden";
+            return Inertia::render('Home', [
+                'Message' => $msg,
+            ]);
+    
         }
         
     }

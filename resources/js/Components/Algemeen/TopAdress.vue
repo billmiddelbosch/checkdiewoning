@@ -16,8 +16,8 @@ const props = defineProps({
         <div class="flex flex-row bg-white" >
             <span class="basis-1/6"></span>
             <div class="basis-2/6 flex-col grid content-center "> 
-                <h2>{{ $page.props.jumbaData['Items'][0]['Filter']['Street'] }} {{ $page.props.jumbaData['Items'][0]['Filter']['Number'] }}</h2>
-                <h3 class="text-[#E64750]">{{ $page.props.jumbaData['Items'][0]['Filter']['Postcode'] }} {{ $page.props.jumbaData['Items'][0]['Filter']['City'] }}</h3>
+                <h2 class="capitalize">{{ $page.props.jumbaData['Items'][0]['Filter']['Street'] }} <span class="uppercase">{{ $page.props.jumbaData['Items'][0]['Filter']['Number'] }}</span></h2>
+                <h3 class="text-[#E64750] capitalize"><span class="uppercase" >{{ $page.props.jumbaData['Items'][0]['Filter']['Postcode'] }}</span> {{ $page.props.jumbaData['Items'][0]['Filter']['City'] }}</h3>
             </div>
             <div class="basis-2/6 flex-col grid content-center justify-items-end py-6"> 
                 <p class="text-xl font-bold">€ {{ $page.props.jumbaData['Items'][0]['Payload']['JumbaValue'][0] }} - € {{ $page.props.jumbaData['Items'][0]['Payload']['JumbaValue'][1] }}</p>

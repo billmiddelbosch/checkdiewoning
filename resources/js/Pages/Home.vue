@@ -139,6 +139,7 @@ function submit() {
                               border-transparent
                               focus:border-gray-500 focus:bg-white focus:ring-0"
                           >
+                          <p v-if="Message" class="text-sm text-[#E94250]">{{ Message }}</p>
                         </label>
                         <div class="grid justify-items-center m-2">
                             <button class="btn-orange uppercase tracking-[.25em]" type="submit">Zoek</button>
