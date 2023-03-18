@@ -88,7 +88,7 @@ function submit() {
                       </div>
                     </div>
 
-                    <!-- Op subpagina 0 of 1 -->
+                    <!-- Op alle subpagina -->
                     <div v-if="selectie >= 0" class="flex flex-column basis-3/5 border-t-4">
                       <form @submit.prevent="submit">
 
@@ -174,6 +174,7 @@ function submit() {
                         </div>
 
 
+                        <!-- FORM INPUT NA PRODUCT SELECTIE -->
                         <span  v-for="(product, i) in cmsProducts['stories']" :key="i">
                           <div v-if="product.content.naam == form.selected && !product.content.leadout" class="flex-column">
                               <label class="m-6">
@@ -207,18 +208,19 @@ function submit() {
                                         border-transparent
                                         focus:border-gray-500 focus:bg-white focus:ring-0"
                                     >
+                                    <!-- BUTTON VOOR REGULIERE (niet leadout) PROUDUCTEN -->
                                     <div class="grid col-start-3">
                                         <button class="btn-blue" type="submit">Bestel</button>
                                     </div>
                                   </span>
                               </label>
                             </div>
+
+                            <!-- BUTTON VOOR LEADOUT PROUDUCTEN -->
                             <div v-if="product.content.naam == form.selected && product.content.leadout" class="flex-column" >
                               <div class="flex flex-row justify-center items-center gap-8 p-8" >
                                 <h4 class="text-[#E64750] ">Schrijf in voor je klant </h4>
-                                <a class="btn btn-blue" :href=product.content.leadoutUrl.cached_url :target=product.content.leadoutUrl.target >
-                                  Inschrijven
-                                </a>
+                                <button class="btn-blue" type="submit">Inschrijven</button>
                               </div>
                             </div>
                           </span>

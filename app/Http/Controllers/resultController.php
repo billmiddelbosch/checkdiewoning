@@ -17,6 +17,21 @@ class resultController extends Controller
 {
     public function index(Request $request)
     {   
+
+        // AFHANDELEN LEADOUT PRODUCTEN
+        foreach (Session::get('cmsProducts') as $product) {
+            if ($product['content']['naam'] == $request->selected && $product['content']['leadout']) {
+
+                $this->storeOrder($request);
+
+                $url = $product['content']['leadoutUrl']['cached_url'];
+                return Inertia::location($url);
+            };
+
+        }
+
+
+        // AFHANDELEN 'Aankoop Rapport' product
         if ($request->selected == 'Aankoop Rapport') {
 
             $this->storeOrder($request);
@@ -68,9 +83,10 @@ class resultController extends Controller
         //     return Inertia::location($url);
         // }
 
-
+        // Afhandeling indien product niet gespecificeerd is
         Mail::to('bill@jumba.nl')
         ->send(new productOnbekend($request));
+
     }
 
     public function storeOrder($request) 
