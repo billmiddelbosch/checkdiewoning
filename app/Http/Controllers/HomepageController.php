@@ -15,6 +15,7 @@ use PHPUnit\Framework\Constraint\Count;
 
 class HomepageController extends Controller
 {
+
     public function findWoningen(Request $request)
     {
         $adresquery = $request->input . "_" . $request->huisnr;
@@ -22,14 +23,14 @@ class HomepageController extends Controller
         if ( Count($jumbaAantal) > 0) {
             $adresquery = $jumbaAantal[0]['Filter']['Street'] . " " . $jumbaAantal[0]['Payload']['Main']['Number'] . " " . $jumbaAantal[0]['Filter']['Postcode'] . " " . $jumbaAantal[0]['Filter']['City'];
             $jumbaDetails = $this->searchJumbadata($adresquery);
+            Session::put('woning', $jumbaDetails);
             Session::put('woningDetails', $jumbaDetails['Items'][0]['Input']['Fulltext']);
             Session::put('jumbaId', $jumbaDetails['Items'][0]['Payload']['ID']);
             $products = $this->getCMSdata('products');
             Session::put('cmsProducts', $products['stories']);
-            return Inertia::render('Adviseur/Home-results', [
-                'jumbaData' => $jumbaDetails,
-                'cmsProducts' => $products
-            ]);
+
+            return redirect()->route('woning');
+
         } else
         {
             $msg = "Helaas geen woning gevonden";

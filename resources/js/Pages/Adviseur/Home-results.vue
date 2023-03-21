@@ -104,7 +104,7 @@ function submit() {
                                 <th class="flex-none w-40">Prijs</th>
                               </tr>
                             </thead>
-                            <tbody v-for="(product, i) in cmsProducts['stories']" :key="i" class="">
+                            <tbody v-for="(product, i) in cmsProducts" :key="i" class="">
                               <tr v-if="product.content.type == 'aankoop'" class="flex-cols-4 h-16 space-x-4 border-b border-slate-200">                                       
                                 <span v-if="product.content.type == 'aankoop'" class="grid place-items-center self-center h-16">
                                   <input type="radio" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']"
@@ -131,7 +131,7 @@ function submit() {
                                 <th class="flex-none w-40">Prijs</th>
                               </tr>
                             </thead>
-                            <tbody v-for="(product, i) in cmsProducts['stories']" :key="i" class="">
+                            <tbody v-for="(product, i) in cmsProducts" :key="i" class="">
                               <tr  v-if="product.content.type == 'verkoop'" class="flex-cols-4 h-16 space-x-4 border-b border-slate-200">
                                 <span v-if="product.content.type == 'verkoop'" class="grid place-items-center self-center h-16">
                                   <input type="radio" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']"
@@ -158,7 +158,7 @@ function submit() {
                                 <th class="flex-none w-40">Prijs</th>
                               </tr>
                             </thead>
-                            <tbody v-for="(product, i) in cmsProducts['stories']" :key="i" class="">
+                            <tbody v-for="(product, i) in cmsProducts" :key="i" class="">
                               <tr v-if="product.content.type == 'overig'" class="flex-cols-4 h-16 space-x-4 border-b border-slate-200">                                       
                                 <span v-if="product.content.type == 'overig'" class="grid place-items-center self-center h-16">
                                   <input type="radio" id="selected" name="selected" v-model="form.selected" :value="product['content']['naam']"
@@ -175,7 +175,7 @@ function submit() {
 
 
                         <!-- FORM INPUT NA PRODUCT SELECTIE -->
-                        <span  v-for="(product, i) in cmsProducts['stories']" :key="i">
+                        <span  v-for="(product, i) in cmsProducts" :key="i">
                           <div v-if="product.content.naam == form.selected && !product.content.leadout" class="flex-column">
                               <label class="m-6">
                                 <h4 class="text-[#E64750] ">Bestel dit product voor je klant </h4>

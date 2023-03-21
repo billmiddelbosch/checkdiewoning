@@ -8,6 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdviseurController;
 use App\Http\Controllers\agentController;
 use App\Http\Controllers\resultController;
+use App\Http\Controllers\ProductsController;
+
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,6 +44,14 @@ Route::get('/', function () {
 // Route::get('/', [HomepageController::class, 'index'])->name('home');
 Route::post('/', [HomepageController::class, 'findWoningen'])->name('home-findWoningen');
 
+Route::get('/woning', function () {
+    return Inertia::render('Adviseur/Home-results', [
+        'jumbaData' => Session::get('woning'),
+        'cmsProducts' => Session::get('cmsProducts')
+    ]);
+})->name('woning');
+
+
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
     ->name('woningdetails-finddetails');
 
@@ -50,6 +61,9 @@ Route::get('/adviseur', [AdviseurController::class, 'index'])->middleware(['auth
 Route::post('/adviseur', [AdviseurController::class, 'aanbodOnDate'])->name('adviseur-aanbodOnDate');
 
 Route::post('/home-results', [resultController::class, 'index'])->name('result-index');
+
+Route::get('/orders', [ProductsController::class, 'index'])->middleware(['auth', 'verified'])->name('product-index');
+Route::post('/orders', [ProductsController::class, 'select'])->name('product-select');
 
 
 // BOILER GESLOTEN OMGEVING

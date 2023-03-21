@@ -65,27 +65,17 @@ function submit() {
                 <!-- Content Home - NIET ingelogd -->
                 <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg--jumba-red py-10">
                   <span class=" ">
-                    <h3 class="py-4 text-center">Welkom bij Checkdiewoning.nl </h3>
-                    <p class="px-10">
-                      <span class="text-bold">'Check die wonging'</span> is onderdeel van <a href="www.jumba.nl" class="text-bold">Jumba.nl</a>
+                    <h3 class="pt-4 text-center">WELKOM BIJ CHECKDIEWONING.NL </h3>
+                    <p class="text-center">
+                      <span class="text-bold ">Onderdeel van <a href="https://www.jumba.nl/" target="new" class="text-bold">Jumba.nl</a></span>
                     </p><br/>
-                    <p class="px-10">
-                      Via checkdiewoning.nl neem jij de regie over alle aspecten in de 'woonreis' van je klant.
-                    </p><br/>
-                    <h4 class="pt-10 text-center">
-                      Wij helpen je met onze gratis woning checker.
-                    </h4>
                   </span>
                 </div>
 
                 <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg-white">
                   <span class="">
 
-                    <!-- <h3 class="py-4 text-center">Woning waarde </h3> -->
-                    <p class="px-10">
-                      Bij de aanmelding heb je inlogggevens ontvangen. Log in om je klant te helpen bij de volgende stap in zijn/haar woonreis.
-                    </p><br/>
-                    
+                    <!-- <h3 class="py-4 text-center">Woning waarde </h3> -->                    
                     <span class="flex items-center justify-center m-4">
                       <a href="/login" class="btn-blue">
                         Login
@@ -93,8 +83,7 @@ function submit() {
                     </span>
                     <br/>
                     <p class="px-10">
-                      Heb je je nog geen inlogggevens, 
-                      meld je dan <a class="text-bold" href="/register">HIER</a> gratis aan. 
+                      Geen inloggegevens? Registreer je <a class="text-bold" href="/register">gratis</a>. 
                     </p><br/>
                     
                   </span>
@@ -107,23 +96,16 @@ function submit() {
                   <span class="">
                     <h3 class="py-4 text-center">Welkom {{ $attrs.auth.user.name }}</h3>
                     <p class="px-10">
-                      Als adviseur de regie houden over jouw lead. Daar helpen we je graag bij. 
+                      Als adviseur de regie houden over jouw lead. Daar helpen we je graag bij.
                     </p><br/>
                     <p class="px-10">
-                      Via de Jumba services neem jij ook de regie in het Woon domein. 
-                      Help je klant van financiele orientatie naar aankoop, verkoop tot aan de notaris.
+                      Vul hiernaast het adres of postcode/huisnummer in voor het adres waar je je klant mee wil helpen (aankoop of verkoop).
                     </p>
                   </span>
                 </div>
 
                 <div v-if="$attrs.auth.user" class="basis-1/2 bg-white">
-                  <p class="p-10">
-                    Heeft je klant een woning op het oog en wil hij weten wat die woning kost? Help hem met zijn zoektocht.
-                  </p>
-                  <p class="px-10">
-                    Heb je een woning op het oog en wil je weten wat die woning kost? We helpen je graag.
-                  </p><br/>
-                  <form @submit.prevent="submit" class="p-10">
+                  <form @submit.prevent="submit" class="py-20 px-10">
                     <div class="flex-column border-2">
                         <label class="m-4 ">
                           <h4 class="text-gray-700 "> </h4>
