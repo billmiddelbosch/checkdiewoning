@@ -51,7 +51,6 @@ Route::get('/woning', function () {
     ]);
 })->name('woning');
 
-
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
     ->name('woningdetails-finddetails');
 
@@ -65,6 +64,9 @@ Route::post('/home-results', [resultController::class, 'index'])->name('result-i
 Route::get('/orders', [ProductsController::class, 'index'])->middleware(['auth', 'verified'])->name('product-index');
 Route::post('/orders', [ProductsController::class, 'select'])->name('product-select');
 
+Route::get('/bereken', function () {
+    return Inertia::render('Adviseur/berekenOmzet');
+})->name('bereken');
 
 // BOILER GESLOTEN OMGEVING
 

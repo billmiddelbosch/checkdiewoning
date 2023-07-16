@@ -3,7 +3,7 @@ import defaultLayout from '@/Layouts/defaultLayout.vue';
 import Navigation from '@/Components/Algemeen/ComponentNavigation.vue';
 import Footer from '@/Components/Algemeen/ComponentFooter.vue';
 import { reactive } from 'vue'
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
 
 
@@ -65,18 +65,33 @@ function submit() {
                 <!-- Content Home - NIET ingelogd -->
                 <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg--jumba-red py-10">
                   <span class=" ">
-                    <h3 class="pt-4 text-center">WELKOM BIJ CHECKDIEWONING.NL </h3>
-                    <p class="text-center">
-                      <span class="text-bold ">Onderdeel van <a href="https://www.jumba.nl/" target="new" class="text-bold">Jumba.nl</a></span>
-                    </p><br/>
+                    <h3 class="pt-4 text-center">WELKOM</h3>
+                    <p class="mx-10 text-center">
+                      <span>
+                        Welkom bij CHECKDIEWONING.NL. Dé plek voor financieel adviseurs. 
+                        Hier vind je uitgebreide informatie en handige tools voor het kopen en verkopen van vastgoed.
+                      </span>
+                    </p>
+                    <p class="m-10 text-center">
+                        Onderdeel van 
+                        <a href="https://www.jumba.nl/" target="new" class="text-bold">Jumba.nl</a> &
+                        <a href="https://www.isalu.nl/" target="new" class="text-bold">iSalu.nl</a>
+                    </p>                  
                   </span>
                 </div>
 
-                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg-white">
+                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg-white py-10">
                   <span class="">
-
+                    <h3 class="pt-4 text-center">VOOR ADVISEURS</h3>
+                    <p class="mx-10 text-center">
+                      <span>
+                        Ontdek vandaag nog de mogelijkheden. 
+                        Help uw klant met waardevolle informatie en ontdek hoe je je omzet kan verhogen. 
+                        Log in of registreer zonder verplichting. 
+                      </span>
+                    </p>
                     <!-- <h3 class="py-4 text-center">Woning waarde </h3> -->                    
-                    <span class="flex items-center justify-center m-4">
+                    <span class="flex textBmidde01asdfsdf-center justify-center m-4">
                       <a href="/login" class="btn-blue">
                         Login
                       </a>
@@ -92,22 +107,27 @@ function submit() {
 
 
                 <!-- Content Home - WEL ingelogd -->
-                <div v-if="$attrs.auth.user" class="basis-1/2 bg--jumba-red py-12">
-                  <span class="">
-                    <h3 class="py-4 text-center">Welkom {{ $attrs.auth.user.name }}</h3>
-                    <p class="px-10">
-                      Als adviseur de regie houden over jouw lead. Daar helpen we je graag bij.
-                    </p><br/>
-                    <p class="px-10">
-                      Vul hiernaast het adres of postcode/huisnummer in voor het adres waar je je klant mee wil helpen (aankoop of verkoop).
-                    </p>
-                  </span>
+                <div v-if="$attrs.auth.user" class="flex-column basis-1/2 bg--jumba-red py-10">
+                  <h3 class="py-4 text-center">Extra inkomsten</h3>
+                  <p class="px-10">
+                    Ontdek hoeveel extra inkomsten u kunt genereren als financieel adviseur. 
+                    Gebruik onze rekenhulpmiddel om direct je potentiële extra inkomsten te berekenen.
+                  </p>
+                  <Link
+                    :href="route('bereken')"
+                    class="btn-blue place-content-center m-20"
+                    >BEREKEN NU</Link>
+                  <!-- <button href="/login" class="btn-blue place-content-center m-20">BEREKEN NU</button> -->
                 </div>
 
-                <div v-if="$attrs.auth.user" class="basis-1/2 bg-white">
-                  <form @submit.prevent="submit" class="py-20 px-10">
+                <div v-if="$attrs.auth.user" class="basis-1/2 bg-white py-10">
+                  <h3 class="py-4 text-center">Woninginformatie</h3>
+                    <p class="px-10">
+                      Voer een postcode in en ontvang direct essentiële woninginformatie, inclusief onze waarde inschatting.
+                    </p><br/>
+                  <form @submit.prevent="submit" class="p-10">
                     <div class="flex-column border-2">
-                        <label class="m-4 ">
+                        <label class="m-4">
                           <h4 class="text-gray-700 "> </h4>
                           <input id="input" name="input" v-model="form.input" placeholder="Postcode Huisnummer"
                             class="
