@@ -50,3 +50,7 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 
 - php artisan make:migration <naam tabel>
 - php artisan make:model <naam tabel>
+
+>> Controller creeren
+
+- php artisan make:controller <naam controller>

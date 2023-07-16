@@ -3,7 +3,7 @@ import defaultLayout from '@/Layouts/defaultLayout.vue';
 import Navigation from '@/Components/Algemeen/ComponentNavigation.vue';
 import Footer from '@/Components/Algemeen/ComponentFooter.vue';
 import { reactive, computed } from 'vue'
-import { Head, Link } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
 
 const form = reactive({
@@ -126,9 +126,6 @@ const percentageVerschil = computed(() => {
 
                           <p v-if="Message" class="text-sm text-[#E94250]">{{ Message }}</p>
                         </label>
-                        <!-- <div class="grid justify-items-center m-2">
-                            <button class="btn-orange uppercase tracking-[.25em]" type="submit">BEREKEN</button>
-                        </div> -->
                     </div>
 
                   </form>
@@ -144,8 +141,9 @@ const percentageVerschil = computed(() => {
 
                   <Link v-if="form.prijsVerkoop != null && percentageVerschil > 0"
                     :href="route('bereken')"
+                    method="post" 
                     class="btn-blue text-center mx-20">
-                    BEREKEN NU
+                    MEER INFORMATIE
                 </Link>
 
                 </div>

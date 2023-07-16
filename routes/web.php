@@ -7,15 +7,13 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdviseurController;
 use App\Http\Controllers\agentController;
+use App\Http\Controllers\berekenController;
 use App\Http\Controllers\resultController;
 use App\Http\Controllers\ProductsController;
-
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Redirect;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +65,8 @@ Route::post('/orders', [ProductsController::class, 'select'])->name('product-sel
 Route::get('/bereken', function () {
     return Inertia::render('Adviseur/berekenOmzet');
 })->name('bereken');
+Route::post('/bereken', [berekenController::class, 'meerInfo'])->name('bereken-select');
+
 
 // BOILER GESLOTEN OMGEVING
 

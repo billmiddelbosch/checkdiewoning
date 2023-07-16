@@ -115,9 +115,8 @@ function submit() {
                   </p>
                   <Link
                     :href="route('bereken')"
-                    class="btn-blue place-content-center m-20"
-                    >BEREKEN NU</Link>
-                  <!-- <button href="/login" class="btn-blue place-content-center m-20">BEREKEN NU</button> -->
+                    class="btn-blue text-center m-20"
+                    >BEREKEN</Link>
                 </div>
 
                 <div v-if="$attrs.auth.user" class="basis-1/2 bg-white py-10">
