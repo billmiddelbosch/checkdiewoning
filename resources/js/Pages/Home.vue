@@ -110,8 +110,8 @@ function submit() {
                 <div v-if="$attrs.auth.user" class="flex-column basis-1/2 bg--jumba-red py-10">
                   <h3 class="py-4 text-center">Extra inkomsten</h3>
                   <p class="px-10">
-                    Ontdek hoeveel extra inkomsten u kunt genereren als financieel adviseur. 
-                    Gebruik onze rekenhulpmiddel om direct je potentiële extra inkomsten te berekenen.
+                    Ontdek hoeveel extra omzet u kunt genereren als financieel adviseur door verbreding van uw diensen met aan-/verkoop. 
+                    Gebruik onze rekentool om direct je potentiële extra inkomsten te berekenen.
                   </p>
                   <Link
                     :href="route('bereken')"

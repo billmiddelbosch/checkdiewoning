@@ -79,13 +79,14 @@ const percentageVerschil = computed(() => {
                 <div v-if="$attrs.auth.user" class="flex-column basis-1/2 bg--jumba-red py-10">
                     <h3 class="text-center">Kantoor details</h3>
                     <p class="px-10">
-                      Ontdek hoe onze services u kunnen helpen uw inkomsten te vergroten en uw succes als adviseur te stimuleren. 
+                      Deel enkele kantoordetails om te ontdekken hoe onze services 
+                      helpen uw inkomsten te vergroten en uw klantrelaties te verdiepen. 
                     </p>
                   <form @submit.prevent="submit" class="p-4">
                     <div class="flex-column">
                         <label class="m-4 text-black">
-                          <h4 class="text-white px-4">Aantal hypotheek transacties</h4>
-                          <input id="trx" name="trx" v-model="form.trx" type="number" placeholder="Aantal hypotheek adviezen"
+                          <h4 class="text-white px-4">Aantal hypotheek transacties (per maand of jaar)</h4>
+                          <input id="trx" name="trx" v-model="form.trx" type="number" placeholder="aantal adviezen"
                             class="
                               pl-4
                               place-content-center
@@ -97,8 +98,8 @@ const percentageVerschil = computed(() => {
                               border-transparent
                               focus:border-gray-500 focus:bg-white focus:ring-0"
                           >
-                          <h4 class="text-white px-4 pt-4">Prijs hypotheek advies</h4>
-                          <input id="prijsHyp" name="prijsHyp" v-model="form.prijsHyp" type="number" placeholder="Waarde hypotheek advies"
+                          <h4 class="text-white px-4 pt-4">Prijs voor hypotheek advies</h4>
+                          <input id="prijsHyp" name="prijsHyp" v-model="form.prijsHyp" type="number" placeholder="prijs in euro’s"
                             class="
                               pl-4
                               place-content-center
@@ -110,8 +111,8 @@ const percentageVerschil = computed(() => {
                               border-transparent
                               focus:border-gray-500 focus:bg-white focus:ring-0"
                           >
-                          <h4 class="text-white px-4 pt-4">Prijs woning verkoop</h4>
-                          <input id="prijsVerkoop" name="prijsVerkoop" v-model="form.prijsVerkoop" type="number" placeholder="Waarde hypotheek advies"
+                          <h4 class="text-white px-4 pt-4">Prijs verkoop dienstverlening (die u in rekening brengt bij klant)</h4>
+                          <input id="prijsVerkoop" name="prijsVerkoop" v-model="form.prijsVerkoop" type="number" placeholder="prijs in euro’s"
                             class="
                               pl-4
                               place-content-center
