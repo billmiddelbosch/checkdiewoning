@@ -18,34 +18,31 @@ defineProps({
 <template>
   <div>     
     <!-- NOT authentication NAV -->
-    <nav class="bg-white border-b border-gray-100" v-if="!Login" >
+    <nav class="bg-white" v-if="!Login" >
 
       <!-- Primary Navigation Menu -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16">
-              <div class="flex">
-                  <!-- Logo -->
-                  <div class="shrink-0 flex items-center">
-                      <Link :href="route('home')">
-                          <ApplicationLogo
-                              class="block h-9 w-auto fill-current text-gray-800"
-                          />
-                      </Link>
-                  </div>
-
-                  <!-- Navigation Links -->
-                  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                      <!-- <NavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
-                          Adviseur
-                      </NavLink>
-                      <NavLink :href="route('admin-index')" :active="route().current('admin-index')">
-                          Admin
-                      </NavLink>                       -->
-                  </div>
+          <div class="grid grid-cols-12">
+              <!-- Logo -->
+              <div class="col-start-1">
+                  <Link :href="route('Home')">
+                      <ApplicationLogo
+                          class="block h-9 w-auto fill-current text-gray-800"
+                      />
+                  </Link>
+              </div>
+              <!-- Navigation Links -->
+              <div class="hidden space-x-8 sm:col-start-11 sm:col-span-2 sm:-my-px sm:flex">
+                  <NavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+                      Adviseurs inlog
+                  </NavLink>
+                  <!-- <NavLink :href="route('admin-index')" :active="route().current('admin-index')">
+                      Admin
+                  </NavLink>                       -->
               </div>
 
               <!-- Hamburger -->
-              <div class="-mr-2 flex items-center sm:hidden">
+              <div class="col-start-12 -mr-2 flex items-center sm:hidden">
                   <button
                       @click="showingNavigationDropdown = !showingNavigationDropdown"
                       class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
@@ -83,16 +80,16 @@ defineProps({
           class="sm:hidden"
       >
           <div class="pt-2 pb-3 space-y-1">
-            <!-- <ResponsiveNavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
-                Adviseur
+            <ResponsiveNavLink :href="route('adviseur-index')" :active="route().current('adviseur-index')">
+                Adviseurs inlog
             </ResponsiveNavLink>
-            <ResponsiveNavLink :href="route('admin-index')" :active="route().current('admin-index')">
+            <!-- <ResponsiveNavLink :href="route('admin-index')" :active="route().current('admin-index')">
                 Admin
             </ResponsiveNavLink> -->
           </div>
 
           <!-- Responsive Settings Options -->
-          <div class="pt-4 pb-1 border-t border-gray-200">
+          <div class="pt-4 pb-1">
               <div class="px-4">
                   <div class="font-medium text-base text-gray-800">
                   </div>
@@ -108,14 +105,14 @@ defineProps({
 
     <!-- YES authentication NAV -->
 
-    <nav class="bg-white border-b border-gray-100" v-if="Login" >
+    <nav class="bg-white" v-if="Login" >
       <!-- Primary Navigation Menu -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-16">
               <div class="flex">
                   <!-- Logo -->
                   <div class="shrink-0 flex items-center">
-                      <Link :href="route('home')">
+                      <Link :href="route('Home')">
                           <ApplicationLogo
                               class="block h-9 w-auto fill-current text-gray-800"
                           />
@@ -141,7 +138,7 @@ defineProps({
                               <span class="inline-flex rounded-md">
                                   <button
                                       type="button"
-                                      class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                      class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                   >
                                       {{ $page.props.auth.user.name }}
 
@@ -219,7 +216,7 @@ defineProps({
           </div>
 
           <!-- Responsive Settings Options -->
-          <div class="pt-4 pb-1 border-t border-gray-200">
+          <div class="pt-4 pb-1">
               <div class="px-4">
                   <div class="font-medium text-base text-gray-800">
                       {{ $page.props.auth.user.name }}

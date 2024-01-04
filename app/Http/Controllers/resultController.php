@@ -11,12 +11,29 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\agentOrders;
 use Illuminate\Support\Facades\Session;
-
+use Symfony\Component\Translation\Catalogue\TargetOperation;
 
 class resultController extends Controller
 {
     public function index(Request $request)
     {   
+        // AFHANDELEN 'Aankoop Rapport' product
+        if ($request->selected == 'Aankoop Rapport') {
+
+            $this->storeOrder($request);
+
+            Mail::to('bill@jumba.nl')
+            ->cc('bill@jumba.nl')
+            ->send(new aankoopRapport($request));
+            return;
+        }
+
+        if ($request->selected == 'Jumba account') {
+
+            $naam = explode(' ', $request->naam);
+            $url = 'https://jumba.nl/registratie?e-mailadresadviseur=' . Auth::user()->email . '&e-mailadresklant=' . $request->email . '&voornaamklant=' . $naam[0] . '&achternaamklant=' . $naam[1];
+            return Inertia::location($url);
+        }
 
         // AFHANDELEN LEADOUT PRODUCTEN
         foreach (Session::get('cmsProducts') as $product) {
@@ -28,25 +45,6 @@ class resultController extends Controller
                 return Inertia::location($url);
             };
 
-        }
-
-
-        // AFHANDELEN 'Aankoop Rapport' product
-        if ($request->selected == 'Aankoop Rapport') {
-
-            $this->storeOrder($request);
-
-            Mail::to('aankoop@jumba.nl')
-            ->cc('sander@jumba.nl')
-            ->send(new aankoopRapport($request));
-            return;
-        }
-
-        if ($request->selected == 'Jumba account') {
-
-            $naam = explode(' ', $request->naam);
-            $url = 'https://jumba.nl/registratie?e-mailadresadviseur=' . Auth::user()->email . '&e-mailadresklant=' . $request->email . '&voornaamklant=' . $naam[0] . '&achternaamklant=' . $naam[1];
-            return Inertia::location($url);
         }
 
         // if ($request->selected == 'Verkoop woning') {

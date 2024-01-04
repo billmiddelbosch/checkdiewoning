@@ -54,3 +54,14 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 >> Controller creeren
 
 - php artisan make:controller <naam controller>
+
+
+>> CSS hacks
+
+<!-- 
+|  Small (sm:)—640 pixels and up              -> Mobile                                 |
+|  Medium (md:)—768 pixels and up             -> Ipad mini and up and landscape mobile  |
+|  Large (lg:)—1024 pixels and up             -> Ipad pro and up                        |  
+|  Extra large (xl:)—1280 pixels and up       -> Laptop 13i screen                      |
+|  Extra extra large (2xl:)—1536 pixels and up-> Desktop screen                         |
+-->

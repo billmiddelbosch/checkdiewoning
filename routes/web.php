@@ -6,7 +6,7 @@ use App\Http\Controllers\xmlController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdviseurController;
-use App\Http\Controllers\agentController;
+use App\Http\Controllers\isaluController;
 use App\Http\Controllers\berekenController;
 use App\Http\Controllers\resultController;
 use App\Http\Controllers\ProductsController;
@@ -29,17 +29,10 @@ use Inertia\Inertia;
 
 //// OPEN OMGEVING
 Route::get('/', function () {
-    return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('home');
-
+    return Inertia::render('Home');
+})->name('Home');
 
 // HOME
-// Route::get('/', [HomepageController::class, 'index'])->name('home');
 Route::post('/', [HomepageController::class, 'findWoningen'])->name('home-findWoningen');
 
 Route::get('/woning', function () {
@@ -51,6 +44,9 @@ Route::get('/woning', function () {
 
 Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])
     ->name('woningdetails-finddetails');
+
+Route::get('/isalu', [isaluController::class, 'index'])
+    ->name('isalu-index');
 
 // ADVISEUR GESLOTEN OMGEVING
 
@@ -98,8 +94,8 @@ Route::get('agent', [adminController::class, 'index'])->name('agent-index');
 
 // Route::get('/woning/{plaats}/{straat?}/{nr?}/{toev?}', [woningdetailController::class, 'findDetails'])->name('woningdetails-finddetails');
 
-Route::get('/home', [HomepageController::class, 'index'])->name('homepage.index');
-Route::post('/home', [HomepageController::class, 'searchDetails'])->name('homepage.searchdetails');
+Route::get('/Home', [HomepageController::class, 'index'])->name('homepage.index');
+Route::post('/Home', [HomepageController::class, 'searchDetails'])->name('homepage.searchdetails');
 
 
 

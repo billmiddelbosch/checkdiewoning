@@ -15,7 +15,7 @@ class AdviseurController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Adviseur/adviseurHome');   
+        return Inertia::render('Home');   
     }
 
 

@@ -2,7 +2,7 @@
 import defaultLayout from '@/Layouts/defaultLayout.vue';
 import Navigation from '@/Components/Algemeen/ComponentNavigation.vue';
 import Footer from '@/Components/Algemeen/ComponentFooter.vue';
-import { reactive, computed } from 'vue'
+import { reactive, computed, watch } from 'vue'
 import { Link } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
 
@@ -30,6 +30,22 @@ const percentageVerschil = computed(() => {
   return verschilUnformatted.toFixed(2)    
 })
 
+function formatNr($nr) {
+  return $nr.toLocaleString("nl-NL", {style:"currency", currency:"EUR"});
+}
+
+// Format output
+// watch (
+//   // WHAT TO WATCH
+//   () => huidigOmzet,
+//   // WHAT TO DO 
+//     () => { 
+//       if (huidigOmzet > 1000) {
+//         form.trx = 2000
+//       } 
+//     }
+// )
+
 </script>
 
 
@@ -52,31 +68,10 @@ const percentageVerschil = computed(() => {
         <template #main>
           
 
-          <div class="flex flex-row bg-[#F3F4F6]" >
-
-            <!-- linkse spacing -->
-            <div class="basis-1/6">
-            </div>
-
-            <!-- Centrale content -->
-            <div class="basis-4/6">
-
-              <!-- Content Home -->
-
-              <div class="flex flex-row lg:p-12" >
-
-                <!-- Content Home - NIET ingelogd -->
-                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg--jumba-red py-10">
-
-                </div>
-
-                <div v-if="!$attrs.auth.user" class="basis-1/2 flex items-center bg-white py-10">
-
-                </div>
-
+          <div class="bg-[#F3F4F6] grid grid-cols-12 my-10" >
 
                 <!-- Content Home - WEL ingelogd -->
-                <div v-if="$attrs.auth.user" class="flex-column basis-1/2 bg--jumba-red py-10">
+                <div class="col-span-12 md:col-start-2 md:col-span-5 bg--jumba-red py-10">
                     <h3 class="text-center">Kantoor details</h3>
                     <p class="px-10">
                       Deel enkele kantoordetails om te ontdekken hoe onze services 
@@ -132,31 +127,26 @@ const percentageVerschil = computed(() => {
                   </form>
                 </div>
 
-                <div v-if="$attrs.auth.user" class="basis-1/2 flex-column bg-white py-10">
-                  <h4 v-if="form.trx != null" class="text-center">Huidige omzet</h4>
-                  <h1 v-if="form.trx != null" class="text-center  mb-10">{{ huidigOmzet }}</h1>
+                <div v-if="form.trx != null" class="col-span-12 md:col-start-7 md:col-span-5 bg-white py-10">
+                  <h4 v-if="form.trx == null">Vul de informatie in om een beeld te krijgen van de mogelijkheden</h4>
+                  <h4 v-if="form.trx != null && form.prijsHyp != null" class="text-center">Huidige omzet</h4>
+                  <h1 v-if="form.trx != null && form.prijsHyp != null" class="text-center  mb-10">{{ formatNr(huidigOmzet) }}</h1>
                   <h4 v-if="form.prijsVerkoop != null && percentageVerschil > 0" class="text-center">Potentiele omzet</h4>
-                  <h1 v-if="form.prijsVerkoop != null && percentageVerschil > 0" class="text-center mb-10">{{ potentieelOmzet }}</h1>
+                  <h1 v-if="form.prijsVerkoop != null && percentageVerschil > 0" class="text-center mb-10">{{ formatNr(potentieelOmzet) }}</h1>
                   <h4 v-if="form.prijsVerkoop != null && percentageVerschil > 0" class="text-center">Extra potentiele omzet</h4>
                   <h1 v-if="form.prijsVerkoop != null && percentageVerschil > 0" class="text-center  mb-10 text-green-500">{{ percentageVerschil }} %</h1>
 
-                  <Link v-if="form.prijsVerkoop != null && percentageVerschil > 0"
+                  <Link v-if="form.prijsVerkoop != null && percentageVerschil > 0 && $attrs.auth.user"
                     :href="route('bereken')"
                     method="post" 
                     class="btn-blue text-center mx-20">
                     MEER INFORMATIE
-                </Link>
+                  </Link>
 
                 </div>
                 
               </div>
               
-            </div>
-
-          <!-- Rechtse spacing -->
-          <div class="basis-1/6 bg-[#F3F4F6]"></div>
-          </div>
-
       </template>
 
       <template #footer>

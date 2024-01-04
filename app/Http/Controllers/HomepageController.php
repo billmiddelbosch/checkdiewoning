@@ -18,7 +18,7 @@ class HomepageController extends Controller
 
     public function findWoningen(Request $request)
     {
-        $adresquery = $request->input . "_" . $request->huisnr;
+        $adresquery = $request->postcode . "_" . $request->huisnummer;
         $jumbaAantal = $this->suggestJumbadata($adresquery);
         if ( Count($jumbaAantal) > 0) {
             $adresquery = $jumbaAantal[0]['Filter']['Street'] . " " . $jumbaAantal[0]['Payload']['Main']['Number'] . " " . $jumbaAantal[0]['Filter']['Postcode'] . " " . $jumbaAantal[0]['Filter']['City'];
@@ -37,7 +37,6 @@ class HomepageController extends Controller
             return Inertia::render('Home', [
                 'Message' => $msg,
             ]);
-    
         }
         
     }
@@ -84,8 +83,6 @@ class HomepageController extends Controller
             }
         }
     }
-
-
 
     //RETURN DETAIL PAGINA (NOT USED)
     public function searchDetails(Request $request)

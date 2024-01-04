@@ -1,11 +1,16 @@
 <template>
 
   <div class="logo">
-    <router-link :to="{ name: 'home' }">
-      <!-- <img src="@/../assets/Jumba logo-klein.png" alt="Jumba-Logo" width="100" height="100"> -->
-      <img src="https://jumba-assets.s3.eu-west-1.amazonaws.com/Jumba-icon-klein.png" alt="Jumba-Logo" width="50" height="50">
-
+    <router-link :to="{ name: 'Home' }">
+      <img src="@/../../resources/assets/isalu_logo.png" alt="iSalu-Logo" width="150" height="150" />
     </router-link>
   </div>
 
 </template>
+
+<style scoped>
+  img {
+    background: rgb(243,244,246);
+    padding: 12px;
+  }
+</style>
