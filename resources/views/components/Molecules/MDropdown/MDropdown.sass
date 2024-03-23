@@ -1,0 +1,57 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.m-dropdown
+  $self: &
+  @include mixins.base-font
+  @include mixins.font-size-little
+  display: inline-block
+
+  &__toggle
+    align-items: center
+    border-radius: .25rem
+    color: colors.$ui-8
+    display: inline-flex
+    padding: .75rem 1.3125rem
+    text-decoration: none
+    width: auto
+
+    &:hover
+      background-color: colors.$ui-2
+
+    &.has-no-headerStyles
+      padding: 0
+      &:hover
+        background-color: transparent
+
+  // Full width
+  &__is-full-width
+      width: 100%
+      justify-content: center
+
+  // Input field has border
+  &__has-border
+    border: 1px solid colors.$ui-3
+  
+  &__label
+    margin-right: vars.$spacer-2
+
+  .m-dropdown__toggle.is-chevron-hidden
+    .m-dropdown__label
+      margin-right: 0
+
+  &__menu-wrapper
+    position: relative
+    z-index: 4
+
+  &__menu
+    background-color: colors.$white
+    border: 1px solid colors.$ui-3
+    border-radius: .25rem
+    box-shadow: .075rem .075rem .25rem rgba(colors.$ui-3, .5)
+    left: 0
+    padding: .5rem 0
+    position: absolute
+    top: 0
+    z-index: 2

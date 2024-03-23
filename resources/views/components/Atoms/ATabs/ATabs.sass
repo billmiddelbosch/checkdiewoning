@@ -1,0 +1,70 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/variables' as vars
+@use '../../../assets/sass/mixins' as mixins
+
+.a-tabs
+
+  &__nav
+    display: flex
+
+  &__nav-items
+    @include mixins.base-font
+    display: inline-flex
+    list-style: none
+    margin: 0 0 vars.$spacer-4 0
+    padding: 0
+    position: relative
+
+    &:after
+      background-color: colors.$white
+      border-radius: 2px
+      bottom: 0
+      content: ''
+      height: 4px
+      left: 0
+      position: absolute
+      right: 0
+      z-index: 1
+
+  &__nav-item
+    margin: 0
+    padding: 0
+
+  &__nav-header
+    display: flex
+    flex-grow: 1
+    justify-content: flex-end
+
+    & > *
+      margin-right: vars.$spacer-3
+
+      &:last-child
+        margin-right:  0
+
+  &__nav-link
+    @include mixins.font-size-little
+    color: colors.$ui-8
+    display: inline-block
+    padding: vars.$spacer-2 vars.$spacer-4
+    position: relative
+    text-decoration: none
+
+    &--active,
+    &:hover
+      border-radius: 2px
+      color: colors.$blue
+      text-decoration: none
+
+    &--active
+      &:after
+        background-color: colors.$orange-accessible
+        border-radius: 2px
+        bottom: 0
+        content: ''
+        height: 4px
+        left: 0
+        position: absolute
+        right: 0
+        z-index: 2
+
+  // &__content

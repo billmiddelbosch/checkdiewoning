@@ -1,0 +1,23 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.m-dropdownitem
+  color: colors.$ui-8
+  display: block
+  padding: .75rem 1.3125rem
+  text-decoration: none
+  white-space: nowrap
+
+  &:hover
+    background-color: colors.$ui-2
+
+  &.wrapItem
+    white-space: wrap
+
+  // Full width
+  &__is-full-width
+      width: 100%
+      justify-content: center
+
+

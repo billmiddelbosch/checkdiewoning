@@ -1,0 +1,46 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/variables' as vars
+
+@keyframes spinner-border
+  to
+    transform: rotate(360deg)
+
+.a-spinner
+  animation: spinner-border .75s linear infinite
+  border:
+    color: currentColor
+    radius: 50%
+    right-color: transparent
+    style: solid
+  color: colors.$blue
+  display: inline-block
+
+  &--xs
+    border-width: .15em
+    height: vars.$icon-xs-height
+    width: vars.$icon-xs-width
+
+  &--sm
+    border-width: .2em
+    height: vars.$icon-sm-height
+    width: vars.$icon-sm-width
+
+  &--md
+    border-width: .2em
+    height: vars.$icon-md-height
+    width: vars.$icon-md-width
+
+  &--lg
+    border-width: .25em
+    height: vars.$icon-lg-height
+    width: vars.$icon-lg-width
+
+  &--xl
+    border-width: .26em
+    height: vars.$icon-xl-height
+    width: vars.$icon-xl-width
+
+  &--xxl
+    border-width: .38em
+    height: vars.$icon-xxl-height
+    width: vars.$icon-xxl-width

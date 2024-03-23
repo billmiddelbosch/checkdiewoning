@@ -1,0 +1,11 @@
+@use '../../../../assets/sass/colors' as colors
+@use '../../../../assets/sass/mixins' as mixins
+@use '../../../../assets/sass/variables' as vars
+
+.o-datatable-field
+  $self: &
+  &__unittype
+    @include mixins.font-size-tiny
+    border: 1px solid colors.$ui-8
+    display: inline-block
+    padding: vars.$spacer-1

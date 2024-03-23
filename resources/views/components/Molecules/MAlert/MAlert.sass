@@ -1,0 +1,81 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/typography' as typography
+@use '../../../assets/sass/variables' as vars
+
+.m-alert
+  $self: &
+  @include mixins.base-font
+  margin-bottom: vars.$spacer-3
+  padding: vars.$spacer-3 0 vars.$spacer-3
+  position: relative
+
+  $vAligns: 'top' flex-start, 'center' center, 'bottom' flex-end
+  @each $position, $value in $vAligns
+    &--icon-v-align-#{$position}
+      #{$self}__inner
+        align-items: $value
+
+  &__inner
+    display: flex
+
+  &__icon
+    display: inline-flex
+    padding: 0 vars.$spacer-2 0 vars.$spacer-3
+
+  &__content
+    flex-grow: 1
+
+  &__icon,
+  &__title,
+  &__close-link
+    color: colors.$blue
+
+  &__title
+    @include mixins.font-size(typography.$font-5)
+    font-weight: 500
+    margin-bottom: vars.$spacer-1
+
+  &__body
+    @include mixins.font-size-little
+
+  &__close
+    padding: 0 vars.$spacer-3
+
+  // &__close-link
+  //   @include mixins.ahref($self)
+
+  &--no-icon
+    #{$self}__content
+      padding-left: vars.$spacer-4
+
+  &--not-closable
+    #{$self}__content
+      padding-right: vars.$spacer-4
+
+  &--no-line
+    &:before
+      display: none
+
+  @each $name, $value in colors.$alert-colors
+    &--#{$name}
+      background-color: nth($value, 1)
+      border-radius: .25rem
+
+      &:before
+        background-color: nth($value, 2)
+        border-radius: .125rem
+        content: ''
+        height: 100%
+        left: 0
+        position: absolute
+        top: 0
+        width: .25rem
+      
+      #{$self}__icon,
+      #{$self}__title,
+      #{$self}__close-link
+        color: nth($value, 3)
+
+      #{$self}__body
+        color: nth($value, 4)

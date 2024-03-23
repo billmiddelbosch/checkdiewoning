@@ -1,0 +1,48 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/variables' as vars
+@use '../../../assets/sass/mixins' as mixins
+
+.a-table
+  $self: &
+  @include mixins.base-font
+  @include mixins.font-size-little
+  background-color: colors.$white
+  border-spacing: 0
+  color: colors.$ui-8
+  margin-bottom: vars.$spacer-3
+
+  th,
+  td
+    padding: vars.$spacer-2 (vars.$spacer-3 - vars.$spacer-1)
+
+  th
+    font-weight: 400
+    text-align: left
+    vertical-align: bottom
+    white-space: nowrap
+
+  td
+    vertical-align: center
+
+  &--bordered
+    border: 1px solid colors.$ui-3
+
+  &--fullwidth
+    width: 100%
+
+  & > tbody
+    & > tr
+      &#{$self}--row-odd
+        & > td
+          background-color: colors.$ui-1
+
+      &#{$self}--row-even
+        & > td
+          background-color: transparent
+
+  &--hoverable
+    & > tbody
+      & > tr
+        &:hover
+          & > td
+            background-color: colors.$ui-2

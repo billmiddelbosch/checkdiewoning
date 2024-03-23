@@ -1,0 +1,58 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/typography' as typography
+@use '../../../assets/sass/variables' as vars
+
+.m-global-notification
+  $self: &
+  $container-width: 1140px
+
+  @include mixins.base-font
+  display: flex
+  padding: vars.$spacer-3 vars.$spacer-2
+  width: 100%
+
+  p
+    margin: 0
+  
+  &__content
+    flex-grow: 1
+    margin: 0 auto
+    max-width: $container-width
+    position: relative
+    width: 100%
+
+  &__icon,
+  &__close-link
+    color: colors.$blue
+    position: absolute
+    right: vars.$spacer-2
+    top: vars.$spacer-1 * -1
+
+  &__body
+    @include mixins.font-size-little
+    padding-right: vars.$spacer-4
+
+  &__close
+    padding: 0 vars.$spacer-3
+
+  &--no-icon
+    #{$self}__content
+      padding-left: vars.$spacer-4
+
+  &--not-closable
+    #{$self}__content
+      padding-right: vars.$spacer-4
+
+  @each $name, $value in colors.$alert-colors
+    &--#{$name}
+      background-color: nth($value, 1)
+      border-radius: .25rem
+      
+      #{$self}__icon,
+      #{$self}__title,
+      #{$self}__close-link
+        color: nth($value, 3)
+
+      #{$self}__body
+        color: nth($value, 4)

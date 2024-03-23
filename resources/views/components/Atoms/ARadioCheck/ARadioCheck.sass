@@ -1,0 +1,122 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.a-radiocheck
+  $self: &
+  @include mixins.base-font
+  @include mixins.font-size-little
+  display: block
+  max-height: 150px
+  overflow: auto
+  min-height: 1.5rem
+  padding-left: 1.7rem
+  position: relative
+  z-index: 1
+
+  &::-webkit-scrollbar
+    -webkit-appearance: none
+    width: 7px
+
+  &::-webkit-scrollbar-thumb
+    border-radius: 4px
+    background-color: rgba(0,0,0,.5)
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5)
+
+  &__item
+    margin-bottom: vars.$spacer-2
+
+    &:last-child
+      margin-bottom: 0
+
+  &--checkbox
+    #{$self}__input
+      &:checked
+        &~#{$self}__label
+          &:after
+            background-color: colors.$ui-8
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10' %3E%3Cpath fill='%23FFF' fill-rule='evenodd' d='M10.3.96a1.14 1.14 0 011.6 0c.46.44.46 1.1 0 1.47L5.94 9.66c-.46.44-1.15.44-1.6.07L.34 5.9a1.11 1.11 0 01-.07-1.55 1.14 1.14 0 011.6-.08l.08.08L5.1 7.37 10.3.96z' /%3E%3C/svg%3E")
+            background-position: center
+            background-repeat: no-repeat
+            margin: 1px 0 0 1px
+            border-radius: .125rem
+            color: red
+            height: 1.2rem
+            left: -1.65rem
+            top: .095rem
+            width: 1.2rem
+
+    #{$self}__label
+      &:before
+        border-radius: .25rem
+
+  &--radio
+    #{$self}__input
+      &:checked
+        &~#{$self}__label
+          &:after
+            background: no-repeat 50% / 50% 50%
+            background-color: colors.$ui-8
+            border-radius: 50%
+            height: .6rem
+            left: -1.29rem
+            top: .48rem
+            width: .6rem
+
+    #{$self}__label
+      &:before
+        border-radius: 50%
+
+  &__input
+    box-sizing: border-box
+    height: 1.2rem
+    left: 0
+    margin: 0
+    opacity: 0
+    padding: 0
+    position: absolute
+    width: 1.2rem
+    z-index: -1
+
+    &:disabled
+      &~#{$self}__label
+        color: colors.$ui-5
+        cursor: not-allowed
+
+      &:checked~#{$self}__label:before,
+      &~#{$self}__label:before
+        border: 1px solid colors.$ui-5
+        color: #fff
+
+      &:checked~#{$self}__label:after
+        background-color: colors.$ui-5
+
+    &:checked
+      &~#{$self}__label
+        &:before
+          border-color: colors.$ui-8
+          color: #fff
+
+  &__label
+    cursor: pointer
+    display: inline-block
+    line-height: 1.5rem
+    margin-bottom: 0.5rem
+    position: relative
+    vertical-align: top
+    padding: 0rem 1.2rem
+
+    &:after,
+    &:before
+      box-sizing: unset
+      content: ''
+      display: block
+      position: absolute
+
+    &:before
+      background-color: #fff
+      border: 1px solid colors.$ui-8
+      height: 1.2rem
+      left: -1.65rem
+      top: .095rem
+      width: 1.2rem

@@ -1,0 +1,59 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/typography' as typography
+@use '../../../assets/sass/variables' as vars
+
+.o-onboarding
+  $self: &
+
+  @include mixins.base-font
+  @include mixins.font-size-little
+  color: colors.$blue
+  background-color: colors.$white
+  border-radius: vars.$border-radius-default
+  margin-bottom: vars.$spacer-4
+  padding: vars.$spacer-3 vars.$spacer-3
+
+  &__inset
+     padding: vars.$spacer-3 vars.$spacer-2
+     padding-bottom: 0
+ 
+  &__title
+    @include mixins.font-size-little
+    font-weight: 600
+    padding-right: vars.$spacer-4
+  
+  &__close
+    color: colors.$blue
+    position: absolute
+    right: vars.$spacer-2
+    top: -1 * vars.$spacer-1
+
+  &__show
+    margin-bottom: vars.$spacer-3
+    margin-left: auto
+    position: relative
+    text-align: right
+    width: 50px
+
+    &:hover
+      .o-onboarding__show-link
+        box-shadow: 0 10px 30px 0 rgba(0,44,108,0.2)
+        transform: translateY(-3px)
+      
+
+    &-link
+      align-items: center
+      background-color: colors.$white
+      border: 1px solid colors.$ui-2
+      border-radius: 50%
+      color: colors.$blue
+      box-shadow: vars.$default-shadow
+      display: flex
+      height: 50px
+      justify-content: center
+      transition: box-shadow .2s ease, transform .2s ease
+      width: 50px
+
+      &:hover 
+        color: colors.$color-link-accessible

@@ -1,0 +1,29 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.o-contracts
+  $self: &
+
+  &__col
+    @include mixins.base-font
+    @include mixins.font-size-little
+
+  &__links
+    margin: vars.$spacer-3 0
+
+  &__link
+    display: flex
+
+  &__label
+    width: 5rem
+
+  &__href
+    @include mixins.ahref($self)
+    flex-grow: 1
+
+  &__controls
+    margin: vars.$spacer-3 0 0
+
+  &__loader
+    text-align: center

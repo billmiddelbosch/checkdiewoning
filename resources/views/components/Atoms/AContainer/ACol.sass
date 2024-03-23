@@ -1,0 +1,41 @@
+@use "sass:math"
+
+@use 'config'
+
+@mixin default-col
+  box-sizing: border-box
+  padding-left: config.$gutter * 0.5
+  padding-right: config.$gutter * 0.5
+  position: relative
+  width: 100%
+
+@mixin media-breakpoint($name, $breakpoints: config.$breakpoints)
+  $min: map-get($breakpoints, $name)
+  $min-width: if($min != 0, $min, null)
+  @if $min-width
+    @media (min-width: $min-width)
+      @content
+  @else
+    @content
+
+@each $breakpoint in map-keys(config.$breakpoints)
+  $min: map-get(config.$breakpoints, $breakpoint)
+  $size: if(if($min != 0, $min, null) == null, '', '--#{$breakpoint}')
+
+  @for $i from 1 through config.$columns
+    .a-col#{$size}-#{$i}
+      @include default-col
+
+  .a-col#{$size}
+    @include default-col
+
+  @include media-breakpoint($breakpoint, config.$breakpoints)
+    .a-col#{$size}
+      flex-basis: 0
+      flex-grow: 1
+      max-width: 100%
+
+    @for $i from 1 through config.$columns
+      .a-col#{$size}-#{$i}
+        flex: 0 0 percentage(math.div($i, config.$columns))
+        max-width: percentage(math.div($i, config.$columns))

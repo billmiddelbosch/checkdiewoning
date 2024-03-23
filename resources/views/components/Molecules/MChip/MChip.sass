@@ -1,0 +1,88 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.m-chip
+  $self: &
+  @include mixins.base-font
+  @include mixins.font-size-tiny
+  align-items: center
+  border-radius: vars.$border-radius-lg
+  display: inline-flex
+  font-weight: 500
+  line-height: 1.25rem
+  padding: .3rem
+
+  &__label
+    margin-right: vars.$spacer-2
+
+  &__close
+    border-radius: 50%
+    display: flex
+    padding: .125rem
+    margin-left: .25rem
+
+  &--is-block
+    display: flex
+    justify-content: space-between
+
+  &--is-label-center
+    #{$self}__label
+      margin-right: auto
+      margin-left: auto
+      text-align: center
+
+  &--is-interactive
+    cursor: pointer
+    padding: .3rem .3rem .3rem .625rem
+
+  &--info
+    background-color: colors.$ui-1
+    border: 1px solid rgba(colors.$blue, .3)
+    color: colors.$blue
+
+    &#{$self}--is-interactive
+      &:hover
+        border: 1px solid colors.$blue
+
+        #{$self}__close
+          background-color: rgba(colors.$blue, .2)
+  
+  &--success
+    background-color: #D7F4E4
+    border: 1px solid rgba(#146638, .3)
+    color: #146638
+
+    &#{$self}--is-interactive
+      &:hover
+        border: 1px solid colors.$forest-accessible
+
+        #{$self}__close
+          background-color: rgba(colors.$forest-accessible, .2)
+  
+  &--danger
+    background-color: var(--gs1-color-danger-light-1)
+    border: 1px solid rgba(colors.$danger, .3)
+    color: colors.$danger
+
+  &#{$self}--is-interactive
+    &:hover
+      border: 1px solid colors.$danger
+
+      #{$self}__close
+        background-color: rgba(colors.$danger, .2)
+  
+  &--grey,
+  &--gray
+    background-color: var(--gs1-color-ui-4)
+    border: 1px solid rgba(colors.$ui-5, .3)
+    color: colors.$ui-7
+    
+    &#{$self}--is-interactive
+      &:hover
+        border: 1px solid colors.$ui-5
+
+        #{$self}__close
+          background-color: rgba(colors.$ui-7, .2)
+
+    

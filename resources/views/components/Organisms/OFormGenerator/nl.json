@@ -1,0 +1,27 @@
+{
+  "fieldIsRequired": "Dit veld is vereist",
+  "invalidFormat": "Geen geldig invoer",
+  "numberTooSmall": "Het nummer is te klein! Minimum: {0}",
+  "numberTooBig": "Het nummer is te groot. Maximum: {0}",
+  "invalidNumber": "Invoer is geen nummer",
+  "invalidInteger": "Invoer is geen getal",
+  "textTooSmall": "Je moet minimaal {1} tekens invoeren. Huidige invoer: {0}, ",
+  "textTooBig": "Je mag maximaal {1} tekens invoeren. Huidige invoer: {0}",
+  "thisNotText": "Geen geldige tekst",
+  "thisNotArray": "Dit is geen array!",
+  "selectMinItems": "Selecteer minimaal {0} items!",
+  "selectMaxItems": "Selecteer maximaal {0} items!",
+  "invalidDate": "Datum is niet geldig",
+  "dateIsEarly": "De gekozen datum is te vroeg. Huidig: {0}, Minimum: {1}",
+  "dateIsLate": "De gekozen datum is te laat! Huidig: {0}, Maximum: {1}",
+  "invalidEmail": "Het gekozen e-mailadres is niet geldig",
+  "invalidURL": "De gekozen URL is niet geldig",
+  "invalidCard": "Geen geldige kaart",
+  "invalidCardNumber": "Geen geldige kaart nummer",
+  "invalidTextContainNumber": "De gekozen tekst is niet geldig! Het mag geen nummers of speciale karakters bevatten",
+  "invalidTextContainSpec": "De gekozen tekst is niet geldig! Het mag geen speciale karakters bevatten",
+  "invalidDutchPhone": "Telefoonnummer is ongeldig",
+  "invalidDutchPostalCode": "Postcode is ongeldig",
+  "vatNotValid": "BTW nummer is ongeldig"
+
+}

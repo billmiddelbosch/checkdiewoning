@@ -1,0 +1,7 @@
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/typography' as typography
+
+.m-header
+  @each $heading, $value in typography.$headings
+    &--#{$heading}
+      @include mixins.margin-bottom(nth($value, 3))

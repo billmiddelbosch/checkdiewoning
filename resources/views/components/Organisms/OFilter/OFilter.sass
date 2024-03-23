@@ -1,0 +1,32 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.o-filter
+  $self: &
+
+  &__heading
+    display: flex
+
+  &__buttons
+    margin-top: vars.$spacer-5
+
+  &__toggle
+    @include mixins.base-font
+    @include mixins.font-size-little
+    @include mixins.ahref($self)
+
+  &__wrapper
+    border-bottom: 1px solid colors.$ui-2
+    padding-bottom: vars.$spacer-4
+    padding-top: vars.$spacer-5
+
+  &__chips
+    display: inline-block
+    margin-left: vars.$spacer-3
+
+    & > *
+      margin-right: vars.$spacer-2
+
+      &:last-child
+        margin-right: 0

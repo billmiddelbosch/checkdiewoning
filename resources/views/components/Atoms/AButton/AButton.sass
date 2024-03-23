@@ -1,0 +1,138 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.a-button
+  $self: &
+  @include mixins.base-font
+  @include mixins.font-size-little
+  align-items: center
+  border-radius: .25rem
+  cursor: pointer
+  display: inline-flex
+  font-weight: 500
+  line-height: 1.4em
+  outline: 0
+  padding: 0
+  
+  &:disabled
+    cursor: not-allowed
+
+  & > *
+    margin-right: vars.$spacer-2
+
+    &:last-child
+      margin-right: 0
+
+  // Icon
+  &--icon
+      border: 0
+      padding: 0
+      background: none
+    
+      > .a-icon
+         color: #002c6c
+
+  // Full width
+  &--is-full-width
+      width: 100%
+      justify-content: center
+
+  // Is centered
+  &--is-centered
+      width: 50%
+      margin: 0 25%
+      justify-content: center
+
+  // Sizes
+  &--has-padding
+    &#{$self}--xs
+      @include mixins.font-size-tiny
+      padding: .5rem .75rem
+
+    &#{$self}--sm
+      padding: .5625rem .9375rem
+
+    &#{$self}--md
+      padding: .75rem 1.3125rem
+
+  // Colors
+  &--solid
+    &:disabled
+      background-color: colors.$ui-4
+      border: 1px solid colors.$ui-4
+      color: colors.$ui-5
+
+  &--outline
+    &:disabled
+      border: 1px solid colors.$ui-5
+      color: colors.$ui-5
+
+  // Flat sides
+  &--flat-left
+    border-bottom-left-radius: 0
+    border-top-left-radius: 0
+
+  &--flat-right
+    border-bottom-right-radius: 0
+    border-top-right-radius: 0
+
+  @each $name, $value in colors.$colors
+    &:not(:disabled)
+      &#{$self}--solid
+        &#{$self}--#{$name}
+          background-color: nth($value, 1)
+          border: 1px solid nth($value, 1)
+          color: nth($value, 2)
+
+          &:focus
+            border: 1px solid nth(map-get(colors.$colors, '#{$name}-dark-2'), 1)
+            background-color: nth(map-get(colors.$colors, '#{$name}-dark-2'), 1)
+
+          &:hover
+            background-color: nth(map-get(colors.$colors, '#{$name}-dark-1'), 1)
+            border: 1px solid nth(map-get(colors.$colors, '#{$name}-dark-1'), 1)
+            color: nth(map-get(colors.$colors, '#{$name}-dark-1'), -1)
+
+          &:active,
+          &#{$self}--active
+            background-color: nth(map-get(colors.$colors, '#{$name}-dark-2'), 1)
+            border: 1px solid nth(map-get(colors.$colors, '#{$name}-dark-2'), 1)
+            color: nth(map-get(colors.$colors, '#{$name}-dark-2'), -1)
+
+      &#{$self}--outline
+        &#{$self}--#{$name}
+          background-color: transparent
+          border: 1px solid nth($value, 1)
+          color: nth($value, 1)
+
+          &:focus,
+          &:hover
+            border-color: nth(map-get(colors.$colors, '#{$name}-dark-1'), 1)
+            background: nth(map-get(colors.$colors, '#{$name}-dark-2'), 1)
+            color: #FFFFFF
+            border: 1px solid #001A4D
+
+            > .a-icon-wrapper
+              color: #FFFFFF !important
+            
+
+          &:active,
+          &#{$self}--active
+            border-color: nth(map-get(colors.$colors, '#{$name}-dark-2'), 1)
+            color: nth(map-get(colors.$colors, '#{$name}-dark-2'), 1)
+
+    &:not(:disabled)
+      &#{$self}--solid
+        &#{$self}--link-only
+          @include mixins.ahref($self)
+          background-color: transparent
+          border: 1px solid transparent
+
+.badge
+  position: relative
+  top: -18px
+  right: 18px
+  border-radius: 25px
+  background: rgb(242, 99, 52)
+  color: white

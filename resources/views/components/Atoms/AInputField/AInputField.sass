@@ -1,0 +1,109 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.a-inputfield
+  $self: &
+
+  @include mixins.base-font
+  @include mixins.font-size-little
+  display: block
+  margin-bottom: vars.$spacer-2
+
+  &__iconState
+    color: colors.$blue
+
+  &__iconLeft
+    color: colors.$blue
+    transform: translateX(-#{vars.$spacer-1})
+    margin-right: vars.$spacer-1
+  &__iconRight
+    color: colors.$blue
+    transform: translateX(vars.$spacer-1)
+    margin-left: vars.$spacer-1
+
+  &__container
+    display: block
+    max-width: 100%
+    margin-bottom: vars.$spacer-1
+
+  &__label
+    display: block
+
+  &__field
+    @include mixins.base-font
+    display: flex
+    align-items: center
+    width: 100%
+    border-radius: vars.$border-radius-default
+    border: 1px solid colors.$ui-3
+    background-color: colors.$white
+    padding: 0 vars.$spacer-3
+    color: colors.$ui-8
+
+    input
+      flex: 1
+      padding: vars.$spacer-2 0
+      border: none
+      outline: 0
+      color: colors.$ui-8
+      &::placeholder
+        color: colors.$ui-5
+
+      &::disabled
+        cursor: not-allowed
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none
+      &[type="number"]
+        -moz-appearance: textfield
+
+  &__msg
+    @include mixins.font-size-tiny
+    margin-top: vars.$spacer-1
+  
+  // states
+  &--error
+    #{$self}__field,
+    #{$self}__msg,
+    #{$self}__input
+      border-color: colors.$danger
+    #{$self}__msg,
+    #{$self}__iconState
+      color: colors.$danger
+
+  &--correct
+    #{$self}__field,
+    #{$self}__msg,
+    #{$self}__input
+      border-color: colors.$forest-accessible
+    #{$self}__msg,
+    #{$self}__iconState
+      color: colors.$forest-accessible
+
+  &--active
+    #{$self}__field,
+    #{$self}__msg,
+    #{$self}__input
+      border-color: colors.$blue
+    #{$self}__iconState
+      color: colors.$blue
+
+  &--disabled
+    opacity: .5
+
+  &--vertical
+    #{$self}__label
+      margin-bottom: vars.$spacer-1
+
+  &--horizontal
+    #{$self}__container
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      width: 100%
+    #{$self}__label
+      margin-right: vars.$spacer-2
+

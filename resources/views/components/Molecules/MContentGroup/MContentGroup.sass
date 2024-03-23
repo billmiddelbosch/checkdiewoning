@@ -1,0 +1,107 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/variables' as vars
+@use '../../../assets/sass/mixins' as mixins
+
+.m-contentgroup
+  @include mixins.base-font
+  background: colors.$white
+  border-radius: vars.$border-radius-default
+  //color: colors.$blue // Color not belongs here!
+  display: inline-block
+  margin-bottom: vars.$spacer-5
+
+  h3,
+  h4,
+  h6
+    margin: 0
+
+  h3
+    @include mixins.h3
+
+  h4
+    @include mixins.h4
+
+  h6
+    @include mixins.h6
+
+  &--bg-white
+    background-color: colors.$white
+  &--bg-ui-1
+    background-color: colors.$ui-1
+  &--bg-ui-2
+    background-color: colors.$ui-2
+  &--bg-ui-3
+    background-color: colors.$ui-3
+  &--bg-ui-4
+    background-color: colors.$ui-4
+  &--bg-ui-5
+    background-color: colors.$ui-5
+  &--bg-ui-6
+    background-color: colors.$ui-6
+  &--bg-ui-7
+    background-color: colors.$ui-7
+  &--bg-ui-8
+    background-color: colors.$ui-8
+
+  &--bordered
+    border: 1px solid colors.$ui-3
+
+  &--shadowed
+    box-shadow: vars.$default-shadow
+
+  &--fullwidth
+    display: block
+    width: 100%
+
+  &__header
+    align-items: center
+    display: flex
+    padding: vars.$spacer-3
+
+  &__body
+    overflow-x: auto
+    &.has-no-header
+      padding-top: vars.$spacer-3
+
+  &__column
+    align-items: center
+    display: flex
+    flex-grow: 1
+    margin-left: vars.$spacer-3
+
+    &:first-child
+      margin-left: 0
+
+    & > *
+      margin-left: vars.$spacer-3
+
+      &:first-child
+        margin-left:  0
+
+    // &--align-left
+    &--align-right
+      justify-content: flex-end
+
+  &__row
+    &--body-content
+      padding: 0 vars.$spacer-3 vars.$spacer-3
+
+    &--body-subgroup,
+    &--body-table
+      padding: 0 vars.$spacer-1 vars.$spacer-3
+
+// Subgroup
+.m-contentgroup
+  .m-contentgroup
+    .m-contentgroup__header
+      background: colors.$white
+      border-radius: 0
+      padding: vars.$spacer-2 (vars.$spacer-3 - vars.$spacer-1)
+
+    .m-contentgroup__row
+      &--body-content
+        padding: 0 (vars.$spacer-3 - vars.$spacer-1) vars.$spacer-3
+
+      &--body-subgroup,
+      &--body-table
+        padding: 0 (vars.$spacer-3 - vars.$spacer-1) vars.$spacer-3

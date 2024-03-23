@@ -1,0 +1,59 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/variables' as vars
+
+.a-icon-wrapper
+  
+  &.has-bg
+    display: inline-flex
+    background-color: colors.$ui-1
+    border-radius: 100%
+    justify-content: center
+    align-items: center
+
+    &.is-xs
+      width: 20px
+      height: 20px
+    
+    &.is-sm
+      width: 30px
+      height: 30px
+    
+    &.is-md
+      width: 32px
+      height: 32px
+    
+    &.is-lg
+      width: 34px
+      height: 34px
+    
+    &.is-xl
+      width: 60px
+      height: 60px
+    
+    &.is-xxl
+      width: 100px
+      height: 100px
+
+.a-icon
+  display: inline-flex
+
+  &--current-color
+    fill: currentColor
+
+  &--xs
+    width: vars.$icon-xs-width
+
+  &--sm
+    width: vars.$icon-sm-width
+
+  &--md
+    width: vars.$icon-md-width
+
+  &--lg
+    width: vars.$icon-lg-width
+
+  &--xl
+    width: vars.$icon-xl-width
+
+  &--xxl
+    width: vars.$icon-xxl-width

@@ -1,0 +1,8 @@
+@use '../../../../assets/sass/colors' as colors
+@use '../../../../assets/sass/mixins' as mixins
+@use '../../../../assets/sass/variables' as vars
+
+.o-datatable-field
+  $self: &
+  &__callback
+    @include mixins.ahref($self)

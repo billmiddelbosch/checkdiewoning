@@ -1,0 +1,20 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/typography' as typography
+@use '../../../assets/sass/variables' as vars
+
+.a-heading
+  $self: &
+  @include mixins.base-font
+  font-weight: 400
+  line-height: typography.$line-height-heading
+  color: colors.$blue
+
+  @each $heading, $value in typography.$headings
+    &--#{$heading}
+      @include mixins.font-size(nth($value, 1))
+      font-weight: nth($value, 2)
+      margin: 0
+
+      &#{$self}--has-margin
+        @include mixins.margin-bottom(nth($value, 3))

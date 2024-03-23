@@ -1,0 +1,20 @@
+@use '../../../assets/sass/colors' as colors
+@use '../../../assets/sass/mixins' as mixins
+@use '../../../assets/sass/variables' as vars
+
+.m-formgroup
+  $self: &
+  margin-bottom: vars.$spacer-3 - vars.$spacer-2
+
+  #{$self}__items > *
+      margin-bottom: vars.$spacer-2 
+
+  &--inline
+    #{$self}__items > *
+        margin-right: vars.$spacer-2
+
+        &:last-child
+          margin-right: 0
+
+  &--top-margin
+    margin-top: vars.$spacer-5
